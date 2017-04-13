@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -22,15 +23,15 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import static com.example.giovanazzi.tdroid.R.id.text_T2;
 
 public class MainActivity extends AppCompatActivity {
 
-    Switch switch_1,switch_2,switch_3,switch_4,switch_5,switch_6,switch_7,switch_8,switch_9;
-    Button btn_Enviar,btn_Conf_IP;
+    Switch switch_1,switch_2,switch_3,switch_4,switch_5,switch_6,switch_7,switch_8,switch_9,switch_10,switch_11;
+    Button btn_Enviar;
     EditText editText_IP,editText_port;
-    TextView text_H3,text_H2,text_H1,text_P3,text_P2,text_P1,text_T3,text_K2,text_T2,text_T1,text_Inputs,text_Onputs;
+    TextView text_H3,text_H2,text_H1,text_P3,text_P2,text_P1,text_T3,text_K2,text_T2,text_T1,text_Inputs,text_Outputs;
     String IP,port;
+    CheckBox checkBox_Conf;
     int puerto;
     String TAG="TrackDroid";
     public SharedPreferences preferencias;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         preferencias=getSharedPreferences("MisPref", Context.MODE_PRIVATE);
         Levantar_XML();
+        HabilitarSw(false);
         LevantarPreferencias();
         Botones();
 
@@ -57,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
         switch_7=(Switch) findViewById(R.id.switch_7);
         switch_8=(Switch) findViewById(R.id.switch_8);
         switch_9=(Switch) findViewById(R.id.switch_9);
+        switch_10=(Switch) findViewById(R.id.switch_10);
+        switch_11=(Switch) findViewById(R.id.switch_11);
 
         btn_Enviar=(Button)findViewById(R.id.btn_Enviar);
-        btn_Conf_IP=(Button)findViewById(R.id.btn_ConfIP);
-
         editText_IP=(EditText)findViewById(R.id.editText_IP);
         editText_port=(EditText)findViewById(R.id.editText_Port);
         text_K2=(TextView)findViewById(R.id.text_K2);
@@ -74,13 +76,22 @@ public class MainActivity extends AppCompatActivity {
         text_T2=(TextView)findViewById(R.id.text_T2);
         text_T3=(TextView)findViewById(R.id.text_T3);
         text_Inputs=(TextView)findViewById(R.id.text_Inputs);
-        text_Onputs=(TextView)findViewById(R.id.text_Outputs);
+        text_Outputs=(TextView)findViewById(R.id.text_Outputs);
 
-     //   puerto=Integer.parseInt(editText_port.getText().toString());
-
+        checkBox_Conf=(CheckBox)findViewById(R.id.checkBox_conf);
     }
 
     void Botones(){
+
+        checkBox_Conf.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                HabilitarSw(b);
+                if(!b){AlmacenarPreferencias();}
+
+            }
+        });
 
         btn_Enviar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,15 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
                 client=new ClientAsyncTask();
                 client.execute(new String[]{IP,port,"000"});
-            }
-        });
-
-        btn_Conf_IP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                IP=editText_IP.getText().toString();
-                port=editText_port.getText().toString();
-                AlmacenarPreferencias();
             }
         });
 
@@ -256,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
 
-            Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
             if((s == null) || (s.equals(""))){
                 System.out.print("DATO NULL");
                 Log.d(TAG, "null");
@@ -264,33 +266,80 @@ public class MainActivity extends AppCompatActivity {
                 String delimitadores = " ";
                 String[] dato = s.split(delimitadores);
                 int longitud = dato.length;
-                String P1,P2, P3, H1,H2,H3 ,T1, T2,T3, K2, DI, DO;
+                String P1="0",P2, P3, H1,H2,H3 ,T1, T2,T3, K1,K2,K3, DI, DO;
                 String unit;
                 String scale;
                 int cantidad;
+                if(longitud==1){
+                    Toast.makeText(getApplicationContext(),dato[0],Toast.LENGTH_SHORT).show();
+                }
                 if(longitud>1) {
-                    P1 = dato[1];
-                    P3 = dato[3];
-                    H1 = dato[5];
-                    T1 = dato[7];
-                    T2 = dato[9];
-                    K2 = dato[11];
-                    DI = dato[13];
-                    DO = dato[15];
+                    Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
+                       if(dato[0].equals("P1")){
+                           P1 = dato[1];
+                           text_P1.setText(P1);
+                       }
+                        P3 = dato[3];
+                        H1 = dato[5];
+                        T1 = dato[7];
+                        T2 = dato[9];
+                        K2 = dato[11];
+                        DI = dato[12];
+                        DO = dato[13];
+                    
 
-                    text_P1.setText(P1);
                     text_P3.setText(P3);
                     text_H1.setText(H1);
                     text_T1.setText(T1);
-                    text_T2.setText(T1);
-                    text_K2.setText(P1);
-                    text_P1.setText(P1);
-                    text_P1.setText(P1);
-                   // unit = P1.toString();
-                //    text_P1.setText(Escalas(unit, scale, cantidad));
+                    text_T2.setText(T2);
+                    text_K2.setText(K2);
+                    text_Inputs.setText(DI);
+                    text_Outputs.setText(DO);
 
+                    if(DO.substring(0,1).equals("1")){
+                        switch_1.setChecked(true);
+                    }else{switch_1.setChecked(false);}
+
+                    if(DO.substring(1,2).equals("1")){
+                        switch_2.setChecked(true);
+                    }else{switch_2.setChecked(false);}
+
+                    if(DO.substring(2,3).equals("1")){
+                        switch_3.setChecked(true);
+                    }else{switch_3.setChecked(false);}
+
+                    if(DO.substring(3,4).equals("1")){
+                        switch_4.setChecked(true);
+                    }else{switch_4.setChecked(false);}
+
+                    if(DO.substring(4,5).equals("1")){
+                        switch_5.setChecked(true);
+                    }else{switch_5.setChecked(false);}
+
+                    if(DO.substring(5,6).equals("1")){
+                        switch_6.setChecked(true);
+                    }else{switch_6.setChecked(false);}
+
+                    if(DO.substring(6,7).equals("1")){
+                        switch_7.setChecked(true);
+                    }else{switch_7.setChecked(false);}
+
+                    if(DO.substring(7,8).equals("1")){
+                        switch_8.setChecked(true);
+                    }else{switch_8.setChecked(false);}
+
+                    if(DO.substring(8,9).equals("1")){
+                        switch_9.setChecked(true);
+                    }else{switch_9.setChecked(false);}
+
+                    if(DO.substring(9,10).equals("1")){
+                        switch_10.setChecked(true);
+                    }else{switch_10.setChecked(false);}
+
+                    if(DO.substring(10,11).equals("1")){
+                        switch_11.setChecked(true);
+                    }else{switch_11.setChecked(false);}
                 }
-
 
             }
         }
@@ -316,6 +365,28 @@ public class MainActivity extends AppCompatActivity {
         editText_port.setText(preferencias.getString("port", "9000"));
         IP=preferencias.getString("IP", "localhost");
         port=preferencias.getString("port", "9000");
+    }
+
+    void HabilitarSw(boolean valor){
+
+
+        switch_1.setEnabled(valor);
+        switch_2.setEnabled(valor);
+        switch_3.setEnabled(valor);
+        switch_4.setEnabled(valor);
+        switch_5.setEnabled(valor);
+        switch_6.setEnabled(valor);
+        switch_7.setEnabled(valor);
+        switch_8.setEnabled(valor);
+        switch_9.setEnabled(valor);
+        switch_10.setEnabled(valor);
+        switch_11.setEnabled(valor);
+
+        editText_IP.setEnabled(valor);
+        editText_port.setEnabled(valor);
+
+
+
     }
 }
 

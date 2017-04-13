@@ -47,13 +47,12 @@
             android:layout_margin="5dp"
             android:text="9000" />
 
-        <Button
-            android:id="@+id/btn_ConfIP"
-            android:layout_width="wrap_content"
+        <CheckBox
+            android:id="@+id/checkBox_conf"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.40"
             android:layout_margin="5dp"
-            android:text="Conf Ip Port" />
+            android:text="Enable" />
 
     </LinearLayout>
 
@@ -65,18 +64,12 @@
 
         <Button
             android:id="@+id/btn_Enviar"
-            android:layout_width="186dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Status"
             android:layout_margin="5dp"
-            android:layout_weight="1" />
+            android:text="Status" />
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="Enable" />
+
 
 
     </LinearLayout>
@@ -172,10 +165,35 @@
             android:text="Sw 9" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Switch
+            android:id="@+id/switch_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="Sw 10" />
+
+        <Switch
+            android:id="@+id/switch_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="Sw 11" />
+
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textView11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:text="SENSORES :" />
 
     <LinearLayout
@@ -346,17 +364,72 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="K1 : " />
+
+            <TextView
+                android:id="@+id/text_K1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="0" />
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="K2 : " />
+
+            <TextView
+                android:id="@+id/text_K2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="0" />
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="K3 : " />
+
+            <TextView
+                android:id="@+id/text_K3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="0" />
+
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:orientation="horizontal">
         <TextView
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ENTRADAS DIGITALES:" />
+            android:text="ENTRADAS DIGITALES : " />
 
         <TextView
             android:id="@+id/text_Inputs"
@@ -370,12 +443,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:orientation="horizontal">
         <TextView
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ENTRADAS DIGITALES:" />
+            android:text="SALIDAS DIGITALES : " />
 
         <TextView
             android:id="@+id/text_Outputs"
@@ -385,23 +459,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="presion:" />
-
-        <TextView
-            android:id="@+id/text_K2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="0" />
-
-    </LinearLayout>
 
 
 </LinearLayout>
