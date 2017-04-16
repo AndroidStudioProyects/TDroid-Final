@@ -1,6 +1,7 @@
 package com.example.giovanazzi.tdroid;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     Switch switch_1,switch_2,switch_3,switch_4,switch_5,switch_6,switch_7,switch_8,switch_9,switch_10,switch_11;
     Switch switch_IN_1,switch_IN_2,switch_IN_3,switch_IN_4,switch_IN_5,switch_IN_6,switch_IN_7,switch_IN_8;
-    Button btn_Enviar;
+    Button btn_Enviar,btn_Config;
     EditText editText_IP,editText_port;
     TextView text_H3,text_H2,text_H1,text_P3,text_P2,text_P1,text_T3,text_K2,text_K3,text_K1,text_T2,text_T1,text_Inputs,text_Outputs;
     String IP,port;
@@ -74,17 +75,20 @@ public class MainActivity extends AppCompatActivity {
         switch_IN_8=(Switch)findViewById(R.id.switch_IN_8);
 
         btn_Enviar=(Button)findViewById(R.id.btn_Enviar);
+        btn_Config=(Button)findViewById(R.id.btn_config);
+
         editText_IP=(EditText)findViewById(R.id.editText_IP);
         editText_port=(EditText)findViewById(R.id.editText_Port);
+
         text_K1=(TextView)findViewById(R.id.text_K1);
         text_K2=(TextView)findViewById(R.id.text_K2);
         text_K3=(TextView)findViewById(R.id.text_K3);
         text_H3=(TextView)findViewById(R.id.text_H3);
         text_H2=(TextView)findViewById(R.id.text_H2);
         text_H1=(TextView)findViewById(R.id.text_H1);
-        text_P3=(TextView)findViewById(R.id.text_P1);
+        text_P1=(TextView)findViewById(R.id.text_P1);
         text_P2=(TextView)findViewById(R.id.text_P2);
-        text_P1=(TextView)findViewById(R.id.text_P3);
+        text_P3=(TextView)findViewById(R.id.text_P3);
         text_T1=(TextView)findViewById(R.id.text_T1);
         text_T2=(TextView)findViewById(R.id.text_T2);
         text_T3=(TextView)findViewById(R.id.text_T3);
@@ -129,7 +133,28 @@ public class MainActivity extends AppCompatActivity {
                 client.execute(new String[]{IP,port,"000"});
             }
         });
+        btn_Config.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intento=new Intent(MainActivity.this,Activity_Configuracion.class);
+                Bundle b = new Bundle();
+                b.putString("IP", editText_IP.getText().toString());
+                b.putString("PORT", editText_port.getText().toString());
+
+                //Añadimos la información al intent
+                intento.putExtras(b);
+
+                //Iniciamos la nueva actividad
+                startActivity(intento);
+
+             /*   client=new ClientAsyncTask();
+                client.execute(new String[]{IP,port,"999"});
+                client=new ClientAsyncTask();
+                client.execute(new String[]{IP,port,"1111 2222 3333 4000 5555 6066 7000 8000 9090"});*/
+
+            }
+        });
 
         switch_1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -173,9 +198,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
              //   ClientAsyncTask client;
                  client=new ClientAsyncTask();
-                if(isChecked){
-
-                    client.execute(new String[]{IP,port,"401"});
+                if(isChecked){client.execute(new String[]{IP,port,"401"});
                 }else{
                     client.execute(new String[]{IP,port,"400"});
                 }
@@ -291,10 +314,11 @@ public class MainActivity extends AppCompatActivity {
                 d(TAG, "null");
 
             } else {
-                Toast.makeText(getApplicationContext(),"Mensaje: "+s,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Lectura Actualizada",Toast.LENGTH_SHORT).show();
                 String delimitadores = " ";
                 String[] dato = s.split(delimitadores);
                 int longitud = dato.length;
+                d(TAG, "Longitud: "+longitud);
                 int posP1=-1,posP2=-1,posP3=-1,posT1=-1,posT2=-1,posT3=-1,posH1=-1,posH2=-1,posH3=-1,posK1=-1,posK2=-1,posK3=-1,posDI=-1,posDO=-1;
                 String P1="0",P2="0", P3="0", H1="0",H2="0",H3="0" ,T1="0", T2="0",T3="0", K1="0",K2="0",K3="0", DI="00000000000", DO="00000000";
                 String In1,In2, In3, In4,In5,In6 ,In7, In8;
@@ -302,9 +326,12 @@ public class MainActivity extends AppCompatActivity {
                 String scale;
                 int cantidad;
               if(longitud==1){
-                 //   Toast.makeText(getApplicationContext(),dato[0],Toast.LENGTH_SHORT).show();
+                  // Toast.makeText(getApplicationContext(),dato[0],Toast.LENGTH_SHORT).show();
+               }
+                if(longitud==9){
+                    Toast.makeText(getApplicationContext(),"Configuración:"+dato[0],Toast.LENGTH_SHORT).show();
                 }
-                if(longitud>1) {
+                if(longitud>9) {
 
 
                     for(int i=0;i<longitud;i++){
@@ -314,15 +341,19 @@ public class MainActivity extends AppCompatActivity {
                             case "P1": posP1=i;  Log.d(TAG,"P1: "+posP1);break;
                             case "P2": posP2=i;  Log.d(TAG,"P2: "+posP2);break;
                             case "P3": posP3=i;  Log.d(TAG,"P3: "+posP3);break;
+
                             case "T1": posT1=i;  Log.d(TAG,"T1: "+posT1);break;
                             case "T2": posT2=i;  Log.d(TAG,"T2: "+posT2);break;
                             case "T3": posT3=i;  Log.d(TAG,"T3: "+posT3);break;
-                            case "H1": posH1=i;  Log.d(TAG,"H1: "+posH1);break;
+
+                            case "H1": posH1=i; Log.d(TAG,"H1: "+posH1);break;
                             case "H2": posH2=i; Log.d(TAG,"H2: "+posH2);break;
                             case "H3": posH3=i; Log.d(TAG,"H3: "+posH3);break;
+
                             case "K1": posK1=i; Log.d(TAG,"K1: "+posK1);break;
                             case "K2": posK2=i; Log.d(TAG,"K2: "+posK2);break;
                             case "K3": posK3=i; Log.d(TAG,"K3: "+posK3);break;
+
                             case "DI": posDI=i; Log.d(TAG,"DI: "+posDI);break;
                             case "DO": posDO=i; Log.d(TAG,"DO: "+posDO);break;
                             default:break;
@@ -341,14 +372,14 @@ public class MainActivity extends AppCompatActivity {
                     if(posP2!=-1){P2 = dato[posP2+1];
                     }else{P2="0";}
 
-                    if(posP2!=-1){P3 = dato[posP3+1];
+                    if(posP3!=-1){P3 = dato[posP3+1];
                     }else{P3="0";}
 
                     if(posT1!=-1){T1 = dato[posT1+1];
                     }else{T1="0";}
 
                     if(posT2!=-1){T2 = dato[posT2+1];
-                    }else{P1="0";}
+                    }else{T2="0";}
 
                     if(posT3!=-1){T3 = dato[posT3+1];
                     }else{T3="0";}
@@ -381,18 +412,22 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                    text_P1.setText(P1);
-                    text_P2.setText(P2);
-                    text_P3.setText(P3);
-                    text_H1.setText(H1);
-                    text_H2.setText(H2);
-                    text_H3.setText(H3);
-                    text_T1.setText(T1);
-                    text_T2.setText(T2);
-                    text_T2.setText(T3);
-                    text_K1.setText(K1);
-                    text_K2.setText(K2);
-                    text_K3.setText(K3);
+                    text_P1.setText("P1: "+P1+" Bar");
+                    text_P2.setText("P2: "+P2+" Bar");
+                    text_P3.setText("P3: "+P3+" Bar");
+
+                    text_H1.setText("H1: "+H1+" %");
+                    text_H2.setText("H2: "+H2+" %");
+                    text_H3.setText("H3: "+H3+" %");
+
+                    text_T1.setText("T1: "+T1+" °C");
+                    text_T2.setText("T2: "+T2+" °C");
+                    text_T3.setText("T3: "+T3+" °C");
+
+                    text_K1.setText("K1: "+K1+" Kg");
+                    text_K2.setText("K2: "+K2+" Kg");
+                    text_K3.setText("K3: "+K3+" Kg");
+
                     text_Inputs.setText(DI);
                     text_Outputs.setText(DO);
 
