@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="unidades">
+        <item>Bar</item>
+        <item>°C </item>
+        <item>Seg </item>
+        <item>Kg </item>
+        <item> % </item>
+    </string-array>
+
+
+
+</resources>

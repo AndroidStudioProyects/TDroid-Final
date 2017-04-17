@@ -1,12 +1,16 @@
 package com.example.giovanazzi.tdroid;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,31 +32,58 @@ public class Activity_Configuracion extends AppCompatActivity {
     ClientAsyncTask client;
     Button btn_Guardar,btn_Actualizar;
     //EditText editText_IP,editText_port;
-    TextView textView,text_Conf1,text_Conf2,text_Conf3,text_Conf4,
+    TextView text_Conf1,text_Conf2,text_Conf3,text_Conf4,
             text_Conf5,text_Conf6,text_Conf7,text_Conf8,text_Conf9;
     EditText edit_Conf1,edit_Conf2,edit_Conf3,edit_Conf4,
             edit_Conf5,edit_Conf6,edit_Conf7,edit_Conf8,edit_Conf9;
     String IP_Conf,Port_Conf;
-
+    String Unidades[]={"Bar","Kg","°C","%"};
+    Spinner spin_Conf1,spin_Conf2,spin_Conf3,spin_Conf4,spin_Conf5,spin_Conf6,spin_Conf7,spin_Conf8,spin_Conf9;
+    ArrayAdapter<String> adaptador ;
+    Bundle b;
     String Conf1,Conf2,Conf3,Conf4,Conf5,Conf6,Conf7,Conf8,Conf9;
+    public SharedPreferences preferencias;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracion);
         LevantarXML();
+        SetSpiners();
         Botones();
+        Spiners();
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Bundle b = this.getIntent().getExtras();
-        textView.setText(b.getString("IP"));
+       // b = this.getIntent().getExtras();
+      //  IP_Conf=b.getString("IP");
+      //  Port_Conf=b.getString("PORT");
+        preferencias=getSharedPreferences("MisPref", MODE_PRIVATE);
+        IP_Conf=preferencias.getString("IP", "localhost");
+        Port_Conf=preferencias.getString("Port", "9000");
 
-        IP_Conf=b.getString("IP");
-        Port_Conf=b.getString("PORT");
+        Conf1=preferencias.getString("Conf1", "nada");
+        Conf2=preferencias.getString("Conf2", "Bar");
+        Conf3=preferencias.getString("Conf3", "Bar");
+        Conf4=preferencias.getString("Conf4", "Bar");
+        Conf5=preferencias.getString("Conf5", "Bar");
+        Conf6=preferencias.getString("Conf6", "Bar");
+        Conf7=preferencias.getString("Conf7", "Bar");
+        Conf8=preferencias.getString("Conf8", "Bar");
+        Conf9=preferencias.getString("Conf9", "Bar");
 
+        spin_Conf1.setSelection(Unidad(Conf1));
+        spin_Conf2.setSelection(Unidad(Conf2));
+        spin_Conf3.setSelection(Unidad(Conf3));
+        spin_Conf4.setSelection(Unidad(Conf4));
+        spin_Conf5.setSelection(Unidad(Conf5));
+        spin_Conf6.setSelection(Unidad(Conf6));
+        spin_Conf7.setSelection(Unidad(Conf7));
+        spin_Conf8.setSelection(Unidad(Conf8));
+        spin_Conf9.setSelection(Unidad(Conf9));
 
         client=new ClientAsyncTask();
         client.execute(IP_Conf,Port_Conf,"888");
@@ -61,7 +92,16 @@ public class Activity_Configuracion extends AppCompatActivity {
 
     void LevantarXML(){
 
-        textView=(TextView)findViewById(R.id.text_AcConf);
+        spin_Conf1=(Spinner)findViewById(R.id.spin_Conf1) ;
+        spin_Conf2=(Spinner)findViewById(R.id.spin_Conf2) ;
+        spin_Conf3=(Spinner)findViewById(R.id.spin_Conf3) ;
+        spin_Conf4=(Spinner)findViewById(R.id.spin_Conf4) ;
+        spin_Conf5=(Spinner)findViewById(R.id.spin_Conf5) ;
+        spin_Conf6=(Spinner)findViewById(R.id.spin_Conf6) ;
+        spin_Conf7=(Spinner)findViewById(R.id.spin_Conf7) ;
+        spin_Conf8=(Spinner)findViewById(R.id.spin_Conf8) ;
+        spin_Conf9=(Spinner)findViewById(R.id.spin_Conf9) ;
+
         text_Conf1=(TextView)findViewById(R.id.text_conf1);
         text_Conf2=(TextView)findViewById(R.id.text_conf2);
         text_Conf3=(TextView)findViewById(R.id.text_conf3);
@@ -87,6 +127,24 @@ public class Activity_Configuracion extends AppCompatActivity {
 
     }
 
+    void SetSpiners(){
+
+        ArrayAdapter<CharSequence> adapter =ArrayAdapter.createFromResource(this,R.array.unidades,android.R.layout.simple_spinner_item);
+        spin_Conf1.setAdapter(adapter);
+        spin_Conf2.setAdapter(adapter);
+        spin_Conf3.setAdapter(adapter);
+        spin_Conf4.setAdapter(adapter);
+        spin_Conf5.setAdapter(adapter);
+        spin_Conf6.setAdapter(adapter);
+        spin_Conf7.setAdapter(adapter);
+        spin_Conf8.setAdapter(adapter);
+        spin_Conf9.setAdapter(adapter);
+
+
+
+
+    }
+
     void Botones(){
 
         btn_Actualizar.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +161,140 @@ public class Activity_Configuracion extends AppCompatActivity {
             public void onClick(View v) {
 
                 LevantarDatos();
+            }
+        });
+
+    }
+
+    void Spiners(){
+
+        spin_Conf1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+                SharedPreferences.Editor editor=preferencias.edit();
+                editor.putString("Conf1",Posicion(position));
+                editor.commit();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spin_Conf2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                editor=preferencias.edit();
+                editor.putString("Conf2",Posicion(position));
+                editor.commit();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spin_Conf3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+               editor=preferencias.edit();
+                editor.putString("Conf3",Posicion(position));
+                editor.commit();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spin_Conf4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+               editor=preferencias.edit();
+                editor.putString("Conf4",Posicion(position));
+                editor.commit();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spin_Conf5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+               editor=preferencias.edit();
+                editor.putString("Conf5",Posicion(position));
+                editor.commit();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spin_Conf6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                editor=preferencias.edit();
+                editor.putString("Conf6",Posicion(position));
+                editor.commit();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spin_Conf7.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                editor=preferencias.edit();
+                editor.putString("Conf7",Posicion(position));
+                editor.commit();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spin_Conf8.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                editor=preferencias.edit();
+                editor.putString("Conf8",Posicion(position));
+                editor.commit();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spin_Conf9.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                editor=preferencias.edit();
+                editor.putString("Conf9",Posicion(position));
+                editor.commit();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
@@ -195,7 +387,34 @@ public class Activity_Configuracion extends AppCompatActivity {
         }
     }
 
+    String Posicion(int pos){
+        String value="Bar";
 
+        switch (pos){
 
+            case 0: value="Bar"; break;
+            case 1: value="°C";break;
+            case 2: value="Seg";break;
+            case 3: value="Kg";break;
+            case 4: value="%";
+        }
+
+        return value;
+    }
+
+    int Unidad(String value){
+        int posicion=0;
+
+        switch (value){
+
+            case "Bar": posicion=0; break;
+            case "°C": posicion=1;;break;
+            case "Seg": posicion=2;;break;
+            case "Kg": posicion=3;;break;
+            case "%": posicion=4;;
+        }
+
+        return posicion;
+    }
 
 }

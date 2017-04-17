@@ -119,9 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }else{
                     Toast.makeText(getApplicationContext(),"Control Manual HABILITADO.",Toast.LENGTH_SHORT).show();
-
                 }
-
             }
         });
 
@@ -133,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 client.execute(new String[]{IP,port,"000"});
             }
         });
+
         btn_Config.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,14 +143,8 @@ public class MainActivity extends AppCompatActivity {
 
                 //Añadimos la información al intent
                 intento.putExtras(b);
-
                 //Iniciamos la nueva actividad
                 startActivity(intento);
-
-             /*   client=new ClientAsyncTask();
-                client.execute(new String[]{IP,port,"999"});
-                client=new ClientAsyncTask();
-                client.execute(new String[]{IP,port,"1111 2222 3333 4000 5555 6066 7000 8000 9090"});*/
 
             }
         });
