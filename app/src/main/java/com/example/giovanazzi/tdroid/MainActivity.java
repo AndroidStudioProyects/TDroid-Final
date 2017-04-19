@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -265,8 +267,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     class ClientAsyncTask extends AsyncTask<String, Void, String> {
@@ -300,11 +300,11 @@ public class MainActivity extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(String s) {
-
-           // Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
+            d(TAG, "DATO RECIBIDO: "+ s);
+      //      Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
             if((s == null) || (s.equals(""))){
-                System.out.print("DATO NULL");
-                d(TAG, "null");
+                Toast.makeText(getApplicationContext(),"Comando no recibido",Toast.LENGTH_SHORT).show();
+                d(TAG, "DATO VACIO");
 
             } else {
                 Toast.makeText(getApplicationContext(),"Lectura Actualizada",Toast.LENGTH_SHORT).show();
@@ -560,5 +560,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id=item.getItemId();
+        if (id == R.id.menu_conf) {
+
+           Intent Config = new Intent(getApplicationContext(),Activity_Config_API.class);
+            startActivity(Config);
+            return true;
+        }
+        if (id == R.id.menu_send) {
+
+            Toast.makeText(getApplicationContext(), "enviar mail a diegogiovanazzi@gmail.com", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 

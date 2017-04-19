@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity_Configuracion"></activity>
+        <activity android:name=".Activity_Config_API"></activity>
     </application>
 
 </manifest>
