@@ -1,5 +1,6 @@
 package com.example.giovanazzi.tdroid;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ import static android.util.Log.d;
  */
 
 public class Activity_Configuracion extends AppCompatActivity {
+    String TAG="TrackDroid";
+
     ClientAsyncTask client;
     Button btn_Guardar,btn_Actualizar;
     //EditText editText_IP,editText_port;
@@ -41,13 +44,14 @@ public class Activity_Configuracion extends AppCompatActivity {
     Spinner spin_Conf1,spin_Conf2,spin_Conf3,spin_Conf4,spin_Conf5,spin_Conf6,spin_Conf7,spin_Conf8,spin_Conf9;
     ArrayAdapter<String> adaptador ;
     Bundle b;
-    String Conf1,Conf2,Conf3,Conf4,Conf5,Conf6,Conf7,Conf8,Conf9;
+    String Conf1,Conf2,Conf3,Conf4,Conf5,Conf6,Conf7,Conf8,Conf9,password;
     public SharedPreferences preferencias;
     SharedPreferences.Editor editor;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracion);
+        preferencias=getSharedPreferences("MisPref", Context.MODE_PRIVATE);
         LevantarXML();
         SetSpiners();
         Botones();
@@ -58,9 +62,6 @@ public class Activity_Configuracion extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-       // b = this.getIntent().getExtras();
-      //  IP_Conf=b.getString("IP");
-      //  Port_Conf=b.getString("PORT");
         preferencias=getSharedPreferences("MisPref", MODE_PRIVATE);
         IP_Conf=preferencias.getString("IP", "localhost");
         Port_Conf=preferencias.getString("Port", "9000");
@@ -311,11 +312,13 @@ public class Activity_Configuracion extends AppCompatActivity {
         Conf7=edit_Conf7.getText().toString();
         Conf8=edit_Conf8.getText().toString();
         Conf9=edit_Conf9.getText().toString();
+        password=preferencias.getString("password", "1234");
 
         client=new ClientAsyncTask();
         client.execute(IP_Conf,Port_Conf,"999");
         client=new ClientAsyncTask();
-        client.execute(IP_Conf,Port_Conf,Conf1+" "+Conf2+" "+Conf3+" "+Conf4+" "+Conf5+" "+Conf6+" "+Conf7+" "+Conf8+" "+Conf9);
+        client.execute(IP_Conf,Port_Conf,Conf1+" "+Conf2+" "+Conf3+" "+Conf4+" "+Conf5+" "+Conf6+" "+Conf7+" "+Conf8+" "+Conf9+" "+password);
+        d(TAG,"Configuracion Enviada: "+ Conf1+" "+Conf2+" "+Conf3+" "+Conf4+" "+Conf5+" "+Conf6+" "+Conf7+" "+Conf8+" "+Conf9+" "+password);
 
 
     }

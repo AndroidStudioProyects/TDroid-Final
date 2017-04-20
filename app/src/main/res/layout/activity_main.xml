@@ -15,62 +15,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" IP : "
-                    android:textAllCaps="true"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/editText_IP"
-                    android:layout_width="142dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:selectAllOnFocus="false"
-                    android:text="track.dyndns.org" />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" : "
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/editText_Port"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:text="9000" />
-
-                <CheckBox
-                    android:id="@+id/checkBox_conf"
-                    android:layout_width="85dp"
-                    android:layout_height="wrap_content"
-
-                    android:text="Enable" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_margin="5dp"
+                android:orientation="horizontal"
                 android:weightSum="1">
 
                 <Button
@@ -79,15 +31,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
 
-                    android:text="Configuracion" />
+                    android:text="Configuracion"
+                    android:layout_weight="0.58" />
 
                 <Button
                     android:id="@+id/btn_Enviar"
-                    android:layout_width="match_parent"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
 
-                    android:text="Lectura" />
+                    android:text="Actualizar" />
 
             </LinearLayout>
 
@@ -124,25 +77,26 @@
                     android:id="@+id/switch_IN_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:clickable="false"
                     android:layout_weight="1"
+                    android:clickable="false"
                     android:text="In 1" />
 
                 <Switch
                     android:id="@+id/switch_IN_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:clickable="false"
                     android:layout_weight="1"
+                    android:clickable="false"
                     android:text="In 2" />
 
                 <Switch
                     android:id="@+id/switch_IN_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:clickable="false"
                     android:layout_weight="1"
+                    android:clickable="false"
                     android:text="In 3" />
+
                 <Switch
                     android:id="@+id/switch_IN_4"
                     android:layout_width="wrap_content"
@@ -179,16 +133,16 @@
                     android:id="@+id/switch_IN_7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:clickable="false"
                     android:layout_weight="1"
+                    android:clickable="false"
                     android:text="In 7" />
 
                 <Switch
                     android:id="@+id/switch_IN_8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:clickable="false"
                     android:layout_weight="1"
+                    android:clickable="false"
                     android:text="In 8" />
             </LinearLayout>
 
@@ -208,9 +162,14 @@
 
                 <TextView
                     android:id="@+id/text_Outputs"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="00000000000" />
+                <CheckBox
+                    android:id="@+id/checkBox_conf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Habilitacion" />
 
             </LinearLayout>
 
@@ -231,8 +190,8 @@
                     android:id="@+id/switch_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_margin="5dp"
+                    android:layout_weight="1"
                     android:text="Sw 2" />
 
                 <Switch
@@ -253,24 +212,24 @@
                     android:id="@+id/switch_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_margin="5dp"
+                    android:layout_weight="1"
                     android:text="Sw 4" />
 
                 <Switch
                     android:id="@+id/switch_5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_margin="5dp"
+                    android:layout_weight="1"
                     android:text="Sw 5" />
 
                 <Switch
                     android:id="@+id/switch_6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_margin="5dp"
+                    android:layout_weight="1"
                     android:text="Sw 6" />
 
             </LinearLayout>
@@ -315,8 +274,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Sw 10"
-                    android:layout_weight="0.22" />
+                    android:layout_weight="0.22"
+                    android:text="Sw 10" />
 
                 <Switch
                     android:id="@+id/switch_11"

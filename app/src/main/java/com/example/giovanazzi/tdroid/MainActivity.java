@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     Switch switch_1,switch_2,switch_3,switch_4,switch_5,switch_6,switch_7,switch_8,switch_9,switch_10,switch_11;
     Switch switch_IN_1,switch_IN_2,switch_IN_3,switch_IN_4,switch_IN_5,switch_IN_6,switch_IN_7,switch_IN_8;
     Button btn_Enviar,btn_Config;
-    EditText editText_IP,editText_port;
+    //EditText editText_IP,editText_port;
     TextView text_H3,text_H2,text_H1,text_P3,text_P2,text_P1,text_T3,text_K2,text_K3,text_K1,text_T2,text_T1,text_Inputs,text_Outputs;
     String IP,port;
     CheckBox checkBox_Conf;
@@ -79,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
         btn_Enviar=(Button)findViewById(R.id.btn_Enviar);
         btn_Config=(Button)findViewById(R.id.btn_config);
 
-        editText_IP=(EditText)findViewById(R.id.editText_IP);
-        editText_port=(EditText)findViewById(R.id.editText_Port);
+   //     editText_IP=(EditText)findViewById(R.id.editText_IP);
+     //   editText_port=(EditText)findViewById(R.id.editText_Port);
 
         text_K1=(TextView)findViewById(R.id.text_K1);
         text_K2=(TextView)findViewById(R.id.text_K2);
@@ -116,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
                 HabilitarSw(b);
                 if(!b){
-                    AlmacenarPreferencias();
+
                     Toast.makeText(getApplicationContext(),"Control Manual BLOQUEADO.",Toast.LENGTH_SHORT).show();
 
                 }else{
@@ -139,13 +138,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intento=new Intent(MainActivity.this,Activity_Configuracion.class);
-                Bundle b = new Bundle();
-                b.putString("IP", editText_IP.getText().toString());
-                b.putString("PORT", editText_port.getText().toString());
 
-                //Añadimos la información al intent
-                intento.putExtras(b);
-                //Iniciamos la nueva actividad
                 startActivity(intento);
 
             }
@@ -515,23 +508,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void AlmacenarPreferencias(){
-
-        d("Preferencias","Guardar");
-
-        IP=editText_IP.getText().toString();
-        port=editText_port.getText().toString();
-        SharedPreferences.Editor editor=preferencias.edit();
-        editor.putString("IP", IP);
-        editor.putString("port", port);
-        editor.commit();
-
-    }
-
     private void LevantarPreferencias(){
-
-        editText_IP.setText(preferencias.getString("IP", "localhost"));
-        editText_port.setText(preferencias.getString("port", "9000"));
         IP=preferencias.getString("IP", "localhost");
         port=preferencias.getString("port", "9000");
        }
@@ -550,15 +527,12 @@ public class MainActivity extends AppCompatActivity {
         switch_10.setClickable(valor);
         switch_11.setClickable(valor);
 
-        editText_IP.setEnabled(valor);
-        editText_port.setEnabled(valor);
         if(!valor) {
             client = new ClientAsyncTask();
             client.execute(new String[]{IP, port, "000"});
         }
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
