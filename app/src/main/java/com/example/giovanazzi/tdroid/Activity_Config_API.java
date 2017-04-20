@@ -1,11 +1,14 @@
 package com.example.giovanazzi.tdroid;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -32,7 +35,7 @@ public class Activity_Config_API extends AppCompatActivity {
     String TAG="TrackDroid";
     public SharedPreferences preferencias;
     ClientAsyncTask client;
-    EditText edit_pass_actual,edit_pass_nuevo,edit_IP_Menu,edit_Puerto_Menu;
+    EditText edit_pass_actual,edit_pass_nuevo,edit_repass_nuevo,edit_IP_Menu,edit_Puerto_Menu;
     Button btn_grabarPass;
     String IP,port,password,pass_Nuevo;
     CheckBox checkBox_ip_port;
@@ -46,12 +49,23 @@ public class Activity_Config_API extends AppCompatActivity {
         LevantarPreferencias();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+       edit_pass_nuevo.setText("");
+        edit_repass_nuevo.setText("");
+
+    }
+
     void LevantarXML(){
 
         btn_grabarPass=(Button)findViewById(R.id.btn_grabarPass);
 
         edit_pass_actual=(EditText)findViewById(R.id.edit_pass_actual);
         edit_pass_nuevo=(EditText)findViewById(R.id.edit_pass_nuevo);
+        edit_repass_nuevo=(EditText)findViewById(R.id.edit_repass_nuevo);
+
         edit_IP_Menu=(EditText)findViewById(R.id.edit_IP_Menu);
         edit_Puerto_Menu=(EditText)findViewById(R.id.edit_Puerto_Menu);
 
@@ -59,22 +73,36 @@ public class Activity_Config_API extends AppCompatActivity {
     }
 
     void Botones(){
+
         btn_grabarPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(edit_pass_nuevo.getText().toString().matches("")){
-                    Toast.makeText(getApplicationContext(),"Ingrese nuevo password",Toast.LENGTH_SHORT).show();
-                 }else {
-                    pass_Nuevo = edit_pass_nuevo.getText().toString();
-                    password = edit_pass_actual.getText().toString();
-                    d(TAG, "pass_Nuevo: " + pass_Nuevo);
-                    d(TAG, "password: " + password);
-                    client = new ClientAsyncTask();
-                    client.execute(new String[]{IP, port, "111 " + password + " " + pass_Nuevo}); // envia passactual y nuevo
-                    edit_pass_nuevo.setText("");
-                    Toast.makeText(getApplicationContext(),"Solicitud enviada...",Toast.LENGTH_SHORT).show();
-                }
 
+                if (edit_pass_actual.getText().toString().matches("")) {
+                    Toast.makeText(getApplicationContext(), "Ingrese password Actual", Toast.LENGTH_SHORT).show();
+                }else{
+
+                if (edit_pass_nuevo.getText().toString().matches("")) {
+                    Toast.makeText(getApplicationContext(), "Ingrese nuevo password", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    if (edit_repass_nuevo.getText().toString().matches("")) {
+                        Toast.makeText(getApplicationContext(), "ReIngrese nuevo password", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        if (edit_pass_nuevo.getText().toString().matches(edit_repass_nuevo.getText().toString())) {
+                            CargarPassword();
+                            Toast.makeText(getApplicationContext(), "Solicitud enviada...", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "No coinciden las contraseñas", Toast.LENGTH_SHORT).show();
+                        }
+                        edit_pass_nuevo.setText("");
+                        edit_repass_nuevo.setText("");
+
+                    }
+
+                }
+            }
             }
         });
 
@@ -167,6 +195,18 @@ public class Activity_Config_API extends AppCompatActivity {
         editor.putString("port", port);
         editor.putString("password", password);
         editor.commit();
+
+    }
+
+    private void CargarPassword(){
+
+        pass_Nuevo = edit_pass_nuevo.getText().toString();
+        password = edit_pass_actual.getText().toString();
+        d(TAG, "pass_Nuevo: " + pass_Nuevo);
+        d(TAG, "password: " + password);
+        client = new ClientAsyncTask();
+        client.execute(new String[]{IP, port, "111 " + password + " " + pass_Nuevo}); // envia passactual y nuevo
+        edit_pass_nuevo.setText("");
 
     }
 

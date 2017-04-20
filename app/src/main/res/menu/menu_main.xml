@@ -3,8 +3,11 @@
           <item
               android:id="@+id/menu_conf"
               android:title="Configuración" />
-           <item
+          <item
+                android:id="@+id/menu_compartir"
+             android:title="Compartir Conf." />
+          <item
               android:id="@+id/menu_send"
-              android:title="Envíanos un email" />
+              android:title="Acerca de..." />
 
 </menu>

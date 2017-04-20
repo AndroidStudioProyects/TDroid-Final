@@ -1,11 +1,15 @@
 package com.example.giovanazzi.tdroid;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -47,6 +51,7 @@ public class Activity_Configuracion extends AppCompatActivity {
     String Conf1,Conf2,Conf3,Conf4,Conf5,Conf6,Conf7,Conf8,Conf9,password;
     public SharedPreferences preferencias;
     SharedPreferences.Editor editor;
+    int spinpos1,spinpos2,spinpos3,spinpos4,spinpos5,spinpos6,spinpos7,spinpos8,spinpos9;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -176,6 +181,7 @@ public class Activity_Configuracion extends AppCompatActivity {
 
                 SharedPreferences.Editor editor=preferencias.edit();
                 editor.putString("Conf1",Posicion(position));
+                spinpos1=position;
                 editor.commit();
 
             }
@@ -191,6 +197,7 @@ public class Activity_Configuracion extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 editor=preferencias.edit();
                 editor.putString("Conf2",Posicion(position));
+                spinpos2=position;
                 editor.commit();
             }
 
@@ -205,6 +212,7 @@ public class Activity_Configuracion extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                editor=preferencias.edit();
                 editor.putString("Conf3",Posicion(position));
+                spinpos3=position;
                 editor.commit();
             }
 
@@ -220,6 +228,7 @@ public class Activity_Configuracion extends AppCompatActivity {
                editor=preferencias.edit();
                 editor.putString("Conf4",Posicion(position));
                 editor.commit();
+                spinpos4=position;
             }
 
             @Override
@@ -234,6 +243,7 @@ public class Activity_Configuracion extends AppCompatActivity {
                editor=preferencias.edit();
                 editor.putString("Conf5",Posicion(position));
                 editor.commit();
+                spinpos5=position;
             }
 
             @Override
@@ -249,6 +259,7 @@ public class Activity_Configuracion extends AppCompatActivity {
                 editor=preferencias.edit();
                 editor.putString("Conf6",Posicion(position));
                 editor.commit();
+                spinpos6=position;
             }
 
             @Override
@@ -263,6 +274,7 @@ public class Activity_Configuracion extends AppCompatActivity {
                 editor=preferencias.edit();
                 editor.putString("Conf7",Posicion(position));
                 editor.commit();
+                spinpos7=position;
             }
 
             @Override
@@ -277,6 +289,7 @@ public class Activity_Configuracion extends AppCompatActivity {
                 editor=preferencias.edit();
                 editor.putString("Conf8",Posicion(position));
                 editor.commit();
+                spinpos8=position;
             }
 
             @Override
@@ -291,6 +304,7 @@ public class Activity_Configuracion extends AppCompatActivity {
                 editor=preferencias.edit();
                 editor.putString("Conf9",Posicion(position));
                 editor.commit();
+                spinpos9=position;
             }
 
             @Override
@@ -418,6 +432,53 @@ public class Activity_Configuracion extends AppCompatActivity {
         }
 
         return posicion;
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id=item.getItemId();
+        if (id == R.id.menu_conf) {
+
+            Intent Config = new Intent(getApplicationContext(),Activity_Config_API.class);
+            startActivity(Config);
+            return true;
+        }
+        if (id == R.id.menu_compartir) {
+
+            d(TAG, "compartir configuracion");
+
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT,
+                        " Conf1: " + edit_Conf1.getText().toString()+" "+Posicion(spinpos1)+
+                        " Conf2: " + edit_Conf2.getText().toString()+" "+Posicion(spinpos2)+
+                        " Conf3: " + edit_Conf3.getText().toString()+" "+Posicion(spinpos3)+
+                        " Conf4: " + edit_Conf4.getText().toString()+" "+Posicion(spinpos4)+
+                        " Conf5: " + edit_Conf5.getText().toString()+" "+Posicion(spinpos5)+
+                        " Conf6: " + edit_Conf6.getText().toString()+" "+Posicion(spinpos6)+
+                        " Conf7: " + edit_Conf7.getText().toString()+" "+Posicion(spinpos7)+
+                        " Conf8: " + edit_Conf8.getText().toString()+" "+Posicion(spinpos8)+
+                        " Conf9: " + edit_Conf9.getText().toString()+" "+Posicion(spinpos9));
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+
+            return true;
+        }
+        if (id == R.id.menu_send) {
+
+            d(TAG, "Acerca de...");
+            Toast.makeText(getApplicationContext(),"Desarrollado por DiegoGiovanazzi@gmail.com",Toast.LENGTH_LONG).show();
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

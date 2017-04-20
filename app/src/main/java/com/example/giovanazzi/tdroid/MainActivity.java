@@ -547,11 +547,17 @@ public class MainActivity extends AppCompatActivity {
 
            Intent Config = new Intent(getApplicationContext(),Activity_Config_API.class);
             startActivity(Config);
+            d(TAG, "Menu configuracion");
             return true;
         }
+
+
         if (id == R.id.menu_send) {
 
-            Toast.makeText(getApplicationContext(), "enviar mail a diegogiovanazzi@gmail.com", Toast.LENGTH_SHORT).show();
+
+            d(TAG, "Acerca de...");
+            Toast.makeText(getApplicationContext(),"Desarrollado por DiegoGiovanazzi@gmail.com",Toast.LENGTH_LONG).show();
+
             return true;
         }
         return super.onOptionsItemSelected(item);
