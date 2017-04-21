@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         preferencias=getSharedPreferences("MisPref", Context.MODE_PRIVATE);
         Levantar_XML();
         HabilitarSw(false);
-        LevantarPreferencias();
         Botones();
 
     }
@@ -101,9 +100,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        LevantarPreferencias();
         client =new ClientAsyncTask();
-        client.execute(new String[]{IP,port,"000"});
+        client.execute(IP,port,"000");
 
     }
 
@@ -294,9 +293,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             d(TAG, "DATO RECIBIDO: "+ s);
-      //      Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
+
             if((s == null) || (s.equals(""))){
-                Toast.makeText(getApplicationContext(),"Comando no recibido",Toast.LENGTH_SHORT).show();
+            //  Toast.makeText(getApplicationContext(),"Comando no recibido",Toast.LENGTH_SHORT).show();
                 d(TAG, "DATO VACIO");
 
             } else {
@@ -510,7 +509,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void LevantarPreferencias(){
         IP=preferencias.getString("IP", "localhost");
+        if(IP.toString().equals("localhost")){Toast.makeText(getApplicationContext(),"Falta configurar el Servidor",Toast.LENGTH_SHORT).show();}
         port=preferencias.getString("port", "9000");
+
+
        }
 
     void HabilitarSw(boolean valor){
@@ -529,7 +531,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(!valor) {
             client = new ClientAsyncTask();
-            client.execute(new String[]{IP, port, "000"});
+            client.execute(IP, port, "000");
         }
 
     }

@@ -49,9 +49,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:ems="10"
-                    android:inputType="numberPassword"
+                    android:hint="4 digitos"
+                    android:inputType="number"
                     android:maxLength="4"
-                    android:text="1234"
                     android:textAlignment="center" />
 
             </LinearLayout>
@@ -116,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Grabar Contraseña" />
+                android:text="Grabar Contraseña Remota" />
 
         </LinearLayout>
 
@@ -145,7 +145,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="104dp"
                 android:layout_height="wrap_content"
                 android:text="IP  :  "
                 android:textStyle="bold" />
@@ -169,9 +169,9 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="104dp"
                 android:layout_height="wrap_content"
-                android:text="PUERTO  :  "
+                android:text="PUERTO  TCP :  "
                 android:textStyle="bold" />
 
 

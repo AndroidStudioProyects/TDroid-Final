@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -24,6 +25,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import static android.util.Log.d;
 
 
@@ -34,11 +37,13 @@ import static android.util.Log.d;
 public class Activity_Config_API extends AppCompatActivity {
     String TAG="TrackDroid";
     public SharedPreferences preferencias;
+
     ClientAsyncTask client;
     EditText edit_pass_actual,edit_pass_nuevo,edit_repass_nuevo,edit_IP_Menu,edit_Puerto_Menu;
     Button btn_grabarPass;
     String IP,port,password,pass_Nuevo;
     CheckBox checkBox_ip_port;
+    AlertDialog.Builder dialogo1;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,15 +52,26 @@ public class Activity_Config_API extends AppCompatActivity {
         LevantarXML();
         Botones();
         LevantarPreferencias();
+        Dialogo();
+        d(TAG, "ON CREATE");
+
     }
 
     @Override
     protected void onStart() {
-        super.onStart();
-
+       super.onStart();
+       LevantarPreferencias();
        edit_pass_nuevo.setText("");
-        edit_repass_nuevo.setText("");
+       edit_repass_nuevo.setText("");
+        d(TAG, "ON START");
 
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+       AlmacenarPreferencias();
+        d(TAG, "ON STOP");
     }
 
     void LevantarXML(){
@@ -63,6 +79,7 @@ public class Activity_Config_API extends AppCompatActivity {
         btn_grabarPass=(Button)findViewById(R.id.btn_grabarPass);
 
         edit_pass_actual=(EditText)findViewById(R.id.edit_pass_actual);
+
         edit_pass_nuevo=(EditText)findViewById(R.id.edit_pass_nuevo);
         edit_repass_nuevo=(EditText)findViewById(R.id.edit_repass_nuevo);
 
@@ -73,6 +90,13 @@ public class Activity_Config_API extends AppCompatActivity {
     }
 
     void Botones(){
+        edit_pass_actual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialogo1.show();
+            }
+        });
 
         btn_grabarPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,22 +180,33 @@ public class Activity_Config_API extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             d(TAG, "DATO RECIBIDO: "+ s);
-            //      Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
+
             if((s == null) || (s.equals(""))){
-                Toast.makeText(getApplicationContext(),"El equipo no Responde.",Toast.LENGTH_SHORT).show();
-                d(TAG, "pass_Nuevo: " +pass_Nuevo);
-                d(TAG, "password: " +password);
+
                 d(TAG, "DATO VACIO");
-            } else
-                { if(s == "111") {
-                    edit_pass_actual.setText(pass_Nuevo);
-                    AlmacenarPreferencias();
-                    Toast.makeText(getApplicationContext(),"Password Almacenado !!!",Toast.LENGTH_SHORT).show();
-                    d(TAG, "Password almacenado");
-                    d(TAG, "pass_Nuevo: " +pass_Nuevo);
-                    d(TAG, "password: " +password);
-                    }
-                }
+            } else{
+                    String delimitadores = " ";
+                    String[] dato = s.split(delimitadores);
+                    int longitud = dato.length;
+                    d(TAG, "dato[0]: "+dato[0]+" dato[1]: "+dato[1]);
+
+                      if(dato[0].equals("111")){
+
+                        if(dato[1].equals(pass_Nuevo)){
+
+                            password=pass_Nuevo;
+                            edit_pass_actual.setText(password);
+                            Toast.makeText(getApplicationContext(),"Password:'"+password+"' fue almacenado !!",Toast.LENGTH_SHORT).show();
+                            d(TAG, "Password almacenado");
+                            d(TAG, "pass_Nuevo: " +pass_Nuevo);
+                            d(TAG, "password: " +password);
+                            AlmacenarPreferencias();
+                        }
+
+                      }
+
+
+                 }
             }
     }
 
@@ -190,6 +225,7 @@ public class Activity_Config_API extends AppCompatActivity {
         IP=edit_IP_Menu.getText().toString();
         port=edit_Puerto_Menu.getText().toString();
         password=edit_pass_actual.getText().toString();
+        d(TAG, "password: "+password);
         SharedPreferences.Editor editor=preferencias.edit();
         editor.putString("IP", IP);
         editor.putString("port", port);
@@ -205,11 +241,36 @@ public class Activity_Config_API extends AppCompatActivity {
         d(TAG, "pass_Nuevo: " + pass_Nuevo);
         d(TAG, "password: " + password);
         client = new ClientAsyncTask();
-        client.execute(new String[]{IP, port, "111 " + password + " " + pass_Nuevo}); // envia passactual y nuevo
+        client.execute(IP, port, "111"); // envia passactual y nuevo
+        client = new ClientAsyncTask();
+        client.execute(IP, port, password + " " + pass_Nuevo); // envia passactual y nuevo
         edit_pass_nuevo.setText("");
 
     }
 
+    private void Dialogo(){
+
+        dialogo1= new AlertDialog.Builder(this);
+        dialogo1.setTitle("IMPORTANTE");
+        dialogo1.setMessage("CUIDADO !!!\nCambiara la contraseña local.\n" +
+                "Almacenela en un lugar seguro antes de cambiarla.");
+        dialogo1.setCancelable(false);
+        dialogo1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+
+            }
+        });
+
+/*        dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+
+            }
+
+        });*/
+
+
+
+    }
 }
 
 

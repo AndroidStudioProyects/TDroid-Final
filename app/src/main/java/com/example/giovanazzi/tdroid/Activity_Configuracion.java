@@ -70,6 +70,8 @@ public class Activity_Configuracion extends AppCompatActivity {
         preferencias=getSharedPreferences("MisPref", MODE_PRIVATE);
         IP_Conf=preferencias.getString("IP", "localhost");
         Port_Conf=preferencias.getString("Port", "9000");
+        password=preferencias.getString("password","1234");
+        d(TAG,"password:"+password);
 
         Conf1=preferencias.getString("Conf1", "nada");
         Conf2=preferencias.getString("Conf2", "Bar");
@@ -96,6 +98,12 @@ public class Activity_Configuracion extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStop(){
+        super.onStop();
+
+
+    }
     void LevantarXML(){
 
         spin_Conf1=(Spinner)findViewById(R.id.spin_Conf1) ;
@@ -326,14 +334,16 @@ public class Activity_Configuracion extends AppCompatActivity {
         Conf7=edit_Conf7.getText().toString();
         Conf8=edit_Conf8.getText().toString();
         Conf9=edit_Conf9.getText().toString();
-        password=preferencias.getString("password", "1234");
-
-        client=new ClientAsyncTask();
-        client.execute(IP_Conf,Port_Conf,"999");
-        client=new ClientAsyncTask();
-        client.execute(IP_Conf,Port_Conf,Conf1+" "+Conf2+" "+Conf3+" "+Conf4+" "+Conf5+" "+Conf6+" "+Conf7+" "+Conf8+" "+Conf9+" "+password);
-        d(TAG,"Configuracion Enviada: "+ Conf1+" "+Conf2+" "+Conf3+" "+Conf4+" "+Conf5+" "+Conf6+" "+Conf7+" "+Conf8+" "+Conf9+" "+password);
-
+        if(Conf1.equals("")||Conf2.equals("")||Conf3.equals("")||Conf4.equals("")|| Conf5.equals("")||Conf6.equals("")||
+                Conf7.equals("")||Conf8.equals("")||Conf9.equals("")){
+            Toast.makeText(getApplicationContext(),"Faltan cargar Configuraciones",Toast.LENGTH_LONG).show();
+        }else {
+            client = new ClientAsyncTask();
+            client.execute(IP_Conf, Port_Conf, "999");
+            client = new ClientAsyncTask();
+            client.execute(IP_Conf, Port_Conf, Conf1 + " " + Conf2 + " " + Conf3 + " " + Conf4 + " " + Conf5 + " " + Conf6 + " " + Conf7 + " " + Conf8 + " " + Conf9 + " " + password);
+            d(TAG, "Configuracion Enviada: " + Conf1 + " " + Conf2 + " " + Conf3 + " " + Conf4 + " " + Conf5 + " " + Conf6 + " " + Conf7 + " " + Conf8 + " " + Conf9 + " " + password);
+        }
 
     }
 
@@ -370,24 +380,19 @@ public class Activity_Configuracion extends AppCompatActivity {
         protected void onPostExecute(String s) {
 
             if((s == null) || (s.equals(""))){
+               } else {
 
-            } else {
-              //  Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
                 String delimitadores = " ";
                 String[] dato = s.split(delimitadores);
                 int longitud = dato.length;
                 d("CONFIG", "Longitud: "+longitud);
                 String Conf1="0",Conf2="0", Conf3="0", Conf4="0",Conf5="0",Conf6="0" ,Conf7="0", Conf8="0",Conf9="0";
-
-                if(longitud==1) {
-
-                    Toast.makeText(getApplicationContext(),"Configuración Exitosa !!",Toast.LENGTH_SHORT).show();
-
-                }
-              if(longitud==9) {
-
-                  Toast.makeText(getApplicationContext(),"Lectura de configuración Exitosa !!!",Toast.LENGTH_SHORT).show();
-
+                if(longitud==1){
+                    if(dato[0].equals("999")){
+                        Toast.makeText(getApplicationContext(),"Equipo Configurado",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                if(longitud==9) {
                   edit_Conf1.setText(dato[0]);
                   edit_Conf2.setText(dato[1]);
                   edit_Conf3.setText(dato[2]);
@@ -397,7 +402,7 @@ public class Activity_Configuracion extends AppCompatActivity {
                   edit_Conf7.setText(dato[6]);
                   edit_Conf8.setText(dato[7]);
                   edit_Conf9.setText(dato[8]);
-                  Toast.makeText(getApplicationContext(),"Lectura de configuración Exitosa !!!",Toast.LENGTH_SHORT).show();
+                  Toast.makeText(getApplicationContext(),"Lectura de configuración Exitosa ! ",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -425,10 +430,10 @@ public class Activity_Configuracion extends AppCompatActivity {
         switch (value){
 
             case "Bar": posicion=0; break;
-            case "°C": posicion=1;;break;
-            case "Seg": posicion=2;;break;
-            case "Kg": posicion=3;;break;
-            case "%": posicion=4;;
+            case "°C": posicion=1;break;
+            case "Seg": posicion=2;break;
+            case "Kg": posicion=3;break;
+            case "%": posicion=4;break;
         }
 
         return posicion;
@@ -457,15 +462,16 @@ public class Activity_Configuracion extends AppCompatActivity {
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.putExtra(Intent.EXTRA_TEXT,
-                        " Conf1: " + edit_Conf1.getText().toString()+" "+Posicion(spinpos1)+
-                        " Conf2: " + edit_Conf2.getText().toString()+" "+Posicion(spinpos2)+
-                        " Conf3: " + edit_Conf3.getText().toString()+" "+Posicion(spinpos3)+
-                        " Conf4: " + edit_Conf4.getText().toString()+" "+Posicion(spinpos4)+
-                        " Conf5: " + edit_Conf5.getText().toString()+" "+Posicion(spinpos5)+
-                        " Conf6: " + edit_Conf6.getText().toString()+" "+Posicion(spinpos6)+
-                        " Conf7: " + edit_Conf7.getText().toString()+" "+Posicion(spinpos7)+
-                        " Conf8: " + edit_Conf8.getText().toString()+" "+Posicion(spinpos8)+
-                        " Conf9: " + edit_Conf9.getText().toString()+" "+Posicion(spinpos9));
+                        "Conf1: " + edit_Conf1.getText().toString()+" "+Posicion(spinpos1)+"\n"+
+                        "Conf2: " + edit_Conf2.getText().toString()+" "+Posicion(spinpos2)+"\n"+
+                        "Conf3: " + edit_Conf3.getText().toString()+" "+Posicion(spinpos3)+"\n"+
+                        "Conf4: " + edit_Conf4.getText().toString()+" "+Posicion(spinpos4)+"\n"+
+                        "Conf5: " + edit_Conf5.getText().toString()+" "+Posicion(spinpos5)+"\n"+
+                        "Conf6: " + edit_Conf6.getText().toString()+" "+Posicion(spinpos6)+"\n"+
+                        "Conf7: " + edit_Conf7.getText().toString()+" "+Posicion(spinpos7)+"\n"+
+                        "Conf8: " + edit_Conf8.getText().toString()+" "+Posicion(spinpos8)+"\n"+
+                        "Conf9: " + edit_Conf9.getText().toString()+" "+Posicion(spinpos9)+"\n"+
+                        "Password : " + password);
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
 
