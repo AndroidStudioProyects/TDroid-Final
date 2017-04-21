@@ -385,16 +385,16 @@ public class MainActivity extends AppCompatActivity {
                     if(posK2!=-1){K2 = dato[posK2+1];
                     }else{K2="0";}
 
-                    if(posK3!=-1){P1 = dato[posK3+1];
+                    if(posK3!=-1){K3 = dato[posK3+1];
                     }else{K3="0";}
 
-                    if(posDI!=-1){DO = dato[posDI+1];
-                    }else{DI="0";}
+                    if(posDI!=-1){DI = dato[posDI+1];
+                    }
                     if(posDO!=-1){DO = dato[posDO+1];
 
 
-                    }else{   DI = dato[12];
-                             DO = dato[13];}
+                    }/*else{   DI = dato[12];
+                             DO = dato[13];}*/
 
 
 
