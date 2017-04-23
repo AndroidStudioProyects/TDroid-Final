@@ -30,6 +30,10 @@ import static android.util.Log.d;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    public static final String CmdSolicitudPass="777";
+
+
     Switch switch_1,switch_2,switch_3,switch_4,switch_5,switch_6,switch_7,switch_8,switch_9,switch_10,switch_11;
     Switch switch_IN_1,switch_IN_2,switch_IN_3,switch_IN_4,switch_IN_5,switch_IN_6,switch_IN_7,switch_IN_8;
     Button btn_Enviar,btn_Config;
@@ -547,9 +551,17 @@ public class MainActivity extends AppCompatActivity {
         int id=item.getItemId();
         if (id == R.id.menu_conf) {
 
-           Intent Config = new Intent(getApplicationContext(),Activity_Config_API.class);
+            Intent Config = new Intent(getApplicationContext(),Activity_Config_API.class);
             startActivity(Config);
             d(TAG, "Menu configuracion");
+            return true;
+        }
+
+
+        if (id == R.id.menu_solicitar_pass) {
+            Toast.makeText(getApplicationContext(),"El equipo remoto mostrara la contraseña",Toast.LENGTH_LONG).show();
+            client=new ClientAsyncTask();
+            client.execute(IP,port,"777");
             return true;
         }
 
@@ -564,5 +576,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
 

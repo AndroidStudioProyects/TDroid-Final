@@ -3,7 +3,6 @@ package com.example.giovanazzi.tdroid;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -46,12 +45,11 @@ public class Activity_Configuracion extends AppCompatActivity {
     String IP_Conf,Port_Conf;
     String Unidades[]={"Bar","Kg","°C","%"};
     Spinner spin_Conf1,spin_Conf2,spin_Conf3,spin_Conf4,spin_Conf5,spin_Conf6,spin_Conf7,spin_Conf8,spin_Conf9;
-    ArrayAdapter<String> adaptador ;
-    Bundle b;
     String Conf1,Conf2,Conf3,Conf4,Conf5,Conf6,Conf7,Conf8,Conf9,password;
     public SharedPreferences preferencias;
     SharedPreferences.Editor editor;
     int spinpos1,spinpos2,spinpos3,spinpos4,spinpos5,spinpos6,spinpos7,spinpos8,spinpos9;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +102,7 @@ public class Activity_Configuracion extends AppCompatActivity {
 
 
     }
+
     void LevantarXML(){
 
         spin_Conf1=(Spinner)findViewById(R.id.spin_Conf1) ;
@@ -153,10 +152,6 @@ public class Activity_Configuracion extends AppCompatActivity {
         spin_Conf7.setAdapter(adapter);
         spin_Conf8.setAdapter(adapter);
         spin_Conf9.setAdapter(adapter);
-
-
-
-
     }
 
     void Botones(){
@@ -165,8 +160,8 @@ public class Activity_Configuracion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                client=new ClientAsyncTask();
-                client.execute(IP_Conf,Port_Conf,"888");
+             client=new ClientAsyncTask();
+             client.execute(IP_Conf,Port_Conf,"888");
             }
         });
 
@@ -175,7 +170,7 @@ public class Activity_Configuracion extends AppCompatActivity {
             public void onClick(View v) {
 
                 LevantarDatos();
-            }
+     }
         });
 
     }
@@ -477,6 +472,13 @@ public class Activity_Configuracion extends AppCompatActivity {
 
             return true;
         }
+        if (id == R.id.menu_solicitar_pass) {
+            Toast.makeText(getApplicationContext(),"El equipo remoto mostrara la contraseña",Toast.LENGTH_LONG).show();
+            client=new ClientAsyncTask();
+            client.execute(IP_Conf,Port_Conf,"777");
+            return true;
+        }
+
         if (id == R.id.menu_send) {
 
             d(TAG, "Acerca de...");
