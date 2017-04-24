@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn_Enviar,btn_Config;
     //EditText editText_IP,editText_port;
     TextView text_H3,text_H2,text_H1,text_P3,text_P2,text_P1,text_T3,text_K2,text_K3,text_K1,text_T2,text_T1,text_Inputs,text_Outputs;
-    String IP,port;
+    String IP,port,password;
     CheckBox checkBox_Conf;
     String TAG="TrackDroid";
     public SharedPreferences preferencias;
@@ -515,7 +515,7 @@ public class MainActivity extends AppCompatActivity {
         IP=preferencias.getString("IP", "localhost");
         if(IP.toString().equals("localhost")){Toast.makeText(getApplicationContext(),"Falta configurar el Servidor",Toast.LENGTH_SHORT).show();}
         port=preferencias.getString("port", "9000");
-
+        password=preferencias.getString("password", "1234");
 
        }
 

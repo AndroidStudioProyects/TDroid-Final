@@ -9,6 +9,7 @@
           <item
                 android:id="@+id/menu_solicitar_pass"
                 android:title="Visualizar contraseña " />
+
           <item
               android:id="@+id/menu_send"
               android:title="Acerca de..." />

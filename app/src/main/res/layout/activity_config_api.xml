@@ -77,7 +77,7 @@
                     android:layout_margin="3dp"
                     android:ems="10"
                     android:hint="4 digitos"
-                    android:inputType="number"
+                    android:inputType="numberPassword"
                     android:maxLength="4"
                     android:textAlignment="center" />
 
@@ -105,7 +105,7 @@
                     android:layout_margin="3dp"
                     android:ems="10"
                     android:hint="4 digitos"
-                    android:inputType="number"
+                    android:inputType="numberPassword"
                     android:maxLength="4"
                     android:textAlignment="center" />
 
