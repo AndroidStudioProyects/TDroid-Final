@@ -43,6 +43,7 @@ public class Activity_Config_API extends AppCompatActivity {
     String IP,port,password,pass_Nuevo;
     CheckBox checkBox_ip_port;
     AlertDialog.Builder dialogo1;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -252,24 +253,13 @@ public class Activity_Config_API extends AppCompatActivity {
         dialogo1= new AlertDialog.Builder(this);
         dialogo1.setTitle("IMPORTANTE");
 
-        dialogo1.setMessage("CUIDADO !!!\nCambiara la contraseña local.\n" +
-                "Almacenela en un lugar seguro antes de cambiarla.");
+        dialogo1.setMessage("CUIDADO !!!\nCambiará la contraseña local.\n");
         dialogo1.setCancelable(false);
         dialogo1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogo1, int id) {
 
             }
         });
-
-/*        dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogo1, int id) {
-
-            }
-
-        });*/
-
-
-
     }
 
     @Override
@@ -289,7 +279,6 @@ public class Activity_Config_API extends AppCompatActivity {
             return true;
         }
 
-
         if (id == R.id.menu_solicitar_pass) {
 
             Toast.makeText(getApplicationContext(),"El equipo remoto mostrara la contraseña",Toast.LENGTH_LONG).show();
@@ -298,15 +287,6 @@ public class Activity_Config_API extends AppCompatActivity {
             return true;
         }
 
-
-        if (id == R.id.menu_send) {
-
-
-            d(TAG, "Acerca de...");
-            Toast.makeText(getApplicationContext(),"Desarrollado por DiegoGiovanazzi@gmail.com",Toast.LENGTH_LONG).show();
-
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 

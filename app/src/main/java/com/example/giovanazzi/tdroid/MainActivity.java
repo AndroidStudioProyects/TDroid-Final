@@ -1,5 +1,6 @@
 package com.example.giovanazzi.tdroid;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,9 +11,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,9 +33,7 @@ import static android.util.Log.d;
 
 public class MainActivity extends AppCompatActivity {
 
-
     public static final String CmdSolicitudPass="777";
-
 
     Switch switch_1,switch_2,switch_3,switch_4,switch_5,switch_6,switch_7,switch_8,switch_9,switch_10,switch_11;
     Switch switch_IN_1,switch_IN_2,switch_IN_3,switch_IN_4,switch_IN_5,switch_IN_6,switch_IN_7,switch_IN_8;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     String TAG="TrackDroid";
     public SharedPreferences preferencias;
     ClientAsyncTask client;
+    Dialog customDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,19 +112,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStop(){
+        super.onStop();
+        checkBox_Conf.setChecked(false);
+    }
     void Botones(){
 
         checkBox_Conf.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-                HabilitarSw(b);
                 if(!b){
-
-                    Toast.makeText(getApplicationContext(),"Control Manual BLOQUEADO.",Toast.LENGTH_SHORT).show();
-
+                           HabilitarSw(false);
                 }else{
-                    Toast.makeText(getApplicationContext(),"Control Manual HABILITADO.",Toast.LENGTH_SHORT).show();
+                    DialogoPedirPassword();
                 }
             }
         });
@@ -303,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
                 d(TAG, "DATO VACIO");
 
             } else {
-                Toast.makeText(getApplicationContext(),"Lectura Actualizada",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Actualizado",Toast.LENGTH_SHORT).show();
                 String delimitadores = " ";
                 String[] dato = s.split(delimitadores);
                 int longitud = dato.length;
@@ -346,12 +349,8 @@ public class MainActivity extends AppCompatActivity {
                             case "DI": posDI=i; Log.d(TAG,"DI: "+posDI);break;
                             case "DO": posDO=i; Log.d(TAG,"DO: "+posDO);break;
                             default:break;
-
                         }
-
-
-
-                    }
+              }
 
 
 
@@ -519,6 +518,50 @@ public class MainActivity extends AppCompatActivity {
 
        }
 
+    public void DialogoPedirPassword()  {
+        // con este tema personalizado evitamos los bordes por defecto
+        customDialog = new Dialog(this,R.style.Theme_AppCompat_Dialog);
+        //deshabilitamos el título por defecto
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //obligamos al usuario a pulsar los botones para cerrarlo
+        customDialog.setCancelable(false);
+        //establecemos el contenido de nuestro dialog
+        customDialog.setContentView(R.layout.activity_password);
+        final EditText editPass=(EditText)customDialog.findViewById(R.id.EditText_Pwd);
+        Button botonAcep=(Button) customDialog.findViewById(R.id.btn_acep_pwd);
+        Button botonCancel=(Button) customDialog.findViewById(R.id.btn_can_pwd);
+        botonAcep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+                if(editPass.getText().toString().equals(password)){
+
+
+                    HabilitarSw(true);
+                    Toast.makeText(getApplicationContext(), "Control Manual Habilitado", Toast.LENGTH_SHORT).show();
+
+                }else {
+                     HabilitarSw(false);
+                    checkBox_Conf.setChecked(false);
+                    Toast.makeText(getApplicationContext(), "Error de Contraseña", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+        botonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+
+                HabilitarSw(false);
+                checkBox_Conf.setChecked(false);
+            }
+        });
+
+        customDialog.show();
+    }
+
     void HabilitarSw(boolean valor){
 
         switch_1.setClickable(valor);
@@ -532,11 +575,6 @@ public class MainActivity extends AppCompatActivity {
         switch_9.setClickable(valor);
         switch_10.setClickable(valor);
         switch_11.setClickable(valor);
-
-        if(!valor) {
-            client = new ClientAsyncTask();
-            client.execute(IP, port, "000");
-        }
 
     }
 
@@ -565,15 +603,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
-
-        if (id == R.id.menu_send) {
-
-
-            d(TAG, "Acerca de...");
-            Toast.makeText(getApplicationContext(),"Desarrollado por DiegoGiovanazzi@gmail.com",Toast.LENGTH_LONG).show();
-
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 

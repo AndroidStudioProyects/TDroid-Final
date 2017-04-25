@@ -2,24 +2,21 @@ package com.example.giovanazzi.tdroid;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +36,7 @@ import static android.util.Log.d;
  */
 
 public class Activity_Configuracion extends AppCompatActivity {
+
     String TAG="TrackDroid";
     Dialog customDialog = null;
     ClientAsyncTask client;
@@ -66,6 +64,7 @@ public class Activity_Configuracion extends AppCompatActivity {
         Botones();
         Spiners();
         LevantarPreferencias();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     @Override
@@ -174,11 +173,7 @@ public class Activity_Configuracion extends AppCompatActivity {
         btn_Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mostrar();
-             //   LevantarDatos();
-
-
-
+                DialogoPedirPassword();
 
      }
         });
@@ -386,6 +381,7 @@ public class Activity_Configuracion extends AppCompatActivity {
         protected void onPostExecute(String s) {
 
             if((s == null) || (s.equals(""))){
+
                } else {
 
                 String delimitadores = " ";
@@ -408,7 +404,7 @@ public class Activity_Configuracion extends AppCompatActivity {
                   edit_Conf7.setText(dato[6]);
                   edit_Conf8.setText(dato[7]);
                   edit_Conf9.setText(dato[8]);
-                  Toast.makeText(getApplicationContext(),"Lectura de configuración Exitosa ! ",Toast.LENGTH_SHORT).show();
+                  Toast.makeText(getApplicationContext(),"Lectura Remota OK !!!",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -445,9 +441,7 @@ public class Activity_Configuracion extends AppCompatActivity {
         return posicion;
     }
 
-    /////////////////////////////////777
-    public void mostrar()
-    {
+    public void DialogoPedirPassword()  {
         // con este tema personalizado evitamos los bordes por defecto
         customDialog = new Dialog(this,R.style.Theme_AppCompat_Dialog);
         //deshabilitamos el título por defecto
@@ -456,53 +450,44 @@ public class Activity_Configuracion extends AppCompatActivity {
         customDialog.setCancelable(false);
         //establecemos el contenido de nuestro dialog
         customDialog.setContentView(R.layout.activity_password);
-
-
-        final EditText editPass=(EditText)customDialog.findViewById(R.id.EditText_Pwd);
-
-        ((Button) customDialog.findViewById(R.id.btn_acep_pwd)).setOnClickListener(new View.OnClickListener() {
-
+       final EditText editPass=(EditText)customDialog.findViewById(R.id.EditText_Pwd);
+        Button botonAcep=(Button) customDialog.findViewById(R.id.btn_acep_pwd);
+        Button botonCancel=(Button) customDialog.findViewById(R.id.btn_can_pwd);
+        botonAcep.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View v) {
                 customDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "pass:"+password_Conf, Toast.LENGTH_SHORT).show();
-                if(editPass.getText().toString().equals(password_Conf)){
+              if(editPass.getText().toString().equals(password)){
 
                     Toast.makeText(getApplicationContext(), "Enviando...", Toast.LENGTH_SHORT).show();
-
+                    LevantarDatos();
                 }else {
                     Toast.makeText(getApplicationContext(), "Error de contraseña", Toast.LENGTH_SHORT).show();
                 }
 
 
-
-
             }
         });
-
-        ((Button) customDialog.findViewById(R.id.btn_can_pwd)).setOnClickListener(new View.OnClickListener() {
-
+        botonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View v) {
                 customDialog.dismiss();
                 Toast.makeText(getApplicationContext(),"Cancelado.", Toast.LENGTH_SHORT).show();
-
             }
         });
 
         customDialog.show();
     }
-    /////////////////////////////7
 
     private void LevantarPreferencias(){
         IP_Conf=preferencias.getString("IP", "localhost");
         if(IP_Conf.toString().equals("localhost")){Toast.makeText(getApplicationContext(),"Falta configurar el Servidor",Toast.LENGTH_SHORT).show();}
         Port_Conf=preferencias.getString("port", "9000");
         password_Conf=preferencias.getString("password", "1234");
+        d(TAG, "password_Conf:"+password_Conf);
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main,menu);
@@ -547,13 +532,6 @@ public class Activity_Configuracion extends AppCompatActivity {
             return true;
         }
 
-        if (id == R.id.menu_send) {
-
-            d(TAG, "Acerca de...");
-            Toast.makeText(getApplicationContext(),"Desarrollado por DiegoGiovanazzi@gmail.com",Toast.LENGTH_LONG).show();
-
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
