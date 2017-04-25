@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -39,13 +41,14 @@ public class MainActivity extends AppCompatActivity {
     Switch switch_IN_1,switch_IN_2,switch_IN_3,switch_IN_4,switch_IN_5,switch_IN_6,switch_IN_7,switch_IN_8;
     Button btn_Enviar,btn_Config;
     //EditText editText_IP,editText_port;
-    TextView text_H3,text_H2,text_H1,text_P3,text_P2,text_P1,text_T3,text_K2,text_K3,text_K1,text_T2,text_T1,text_Inputs,text_Outputs;
+    TextView text_H3,text_H2,text_H1,text_P3,text_P2,text_P1,text_T3,text_K2,text_K3,text_K1,text_T2,text_T1,text_Inputs;
     String IP,port,password;
-    CheckBox checkBox_Conf;
+    CheckBox checkBox_Conf,checkBox_Auto;
     String TAG="TrackDroid";
     public SharedPreferences preferencias;
     ClientAsyncTask client;
     Dialog customDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,21 @@ public class MainActivity extends AppCompatActivity {
         HabilitarSw(false);
         Botones();
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LevantarPreferencias();
+        client =new ClientAsyncTask();
+        client.execute(IP,port,"000");
+
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        checkBox_Conf.setChecked(false);
     }
 
     void Levantar_XML(){
@@ -98,32 +116,30 @@ public class MainActivity extends AppCompatActivity {
         text_T1=(TextView)findViewById(R.id.text_T1);
         text_T2=(TextView)findViewById(R.id.text_T2);
         text_T3=(TextView)findViewById(R.id.text_T3);
-        text_Inputs=(TextView)findViewById(R.id.text_Inputs);
-        text_Outputs=(TextView)findViewById(R.id.text_Outputs);
+
         checkBox_Conf=(CheckBox)findViewById(R.id.checkBox_conf);
+        checkBox_Auto=(CheckBox)findViewById(R.id.checkBox_Auto);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        LevantarPreferencias();
-        client =new ClientAsyncTask();
-        client.execute(IP,port,"000");
-
-    }
-
-    @Override
-    protected void onStop(){
-        super.onStop();
-        checkBox_Conf.setChecked(false);
-    }
     void Botones(){
+
+        checkBox_Auto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    Toast.makeText(getApplicationContext(),"Actualización automática",Toast.LENGTH_SHORT).show();
+
+                }else{
+
+                }
+            }
+        });
 
         checkBox_Conf.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(!b){
-                           HabilitarSw(false);
+                    HabilitarSw(false);
                 }else{
                     DialogoPedirPassword();
                 }
@@ -306,7 +322,10 @@ public class MainActivity extends AppCompatActivity {
                 d(TAG, "DATO VACIO");
 
             } else {
-                Toast.makeText(getApplicationContext(),"Actualizado",Toast.LENGTH_SHORT).show();
+                Toast toast=Toast.makeText(getApplicationContext(),"Actualizado",Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP, 0, 0);
+                toast.show();
+
                 String delimitadores = " ";
                 String[] dato = s.split(delimitadores);
                 int longitud = dato.length;
@@ -355,50 +374,47 @@ public class MainActivity extends AppCompatActivity {
 
 
                     if(posP1!=-1){P1 = dato[posP1+1];
-                    }else{P1="0";}
+                    }else{P1="-";}
 
                     if(posP2!=-1){P2 = dato[posP2+1];
-                    }else{P2="0";}
+                    }else{P2="-";}
 
                     if(posP3!=-1){P3 = dato[posP3+1];
-                    }else{P3="0";}
+                    }else{P3="-";}
 
                     if(posT1!=-1){T1 = dato[posT1+1];
-                    }else{T1="0";}
+                    }else{T1="-";}
 
                     if(posT2!=-1){T2 = dato[posT2+1];
-                    }else{T2="0";}
+                    }else{T2="-";}
 
                     if(posT3!=-1){T3 = dato[posT3+1];
-                    }else{T3="0";}
+                    }else{T3="-";}
 
                     if(posH1!=-1){H1 = dato[posH1+1];
-                    }else{H1="0";}
+                    }else{H1="-";}
 
                     if(posH2!=-1){H2 = dato[posH2+1];
-                    }else{H2="0";}
+                    }else{H2="-";}
 
                     if(posH3!=-1){H3 = dato[posH3+1];
-                    }else{H3="0";}
+                    }else{H3="-";}
 
                     if(posK1!=-1){K1 = dato[posK1+1];
-                    }else{K1="0";}
+                    }else{K1="-";}
 
                     if(posK2!=-1){K2 = dato[posK2+1];
-                    }else{K2="0";}
+                    }else{K2="-";}
 
                     if(posK3!=-1){K3 = dato[posK3+1];
-                    }else{K3="0";}
+                    }else{K3="-";}
 
                     if(posDI!=-1){DI = dato[posDI+1];
                     }
                     if(posDO!=-1){DO = dato[posDO+1];
 
 
-                    }/*else{   DI = dato[12];
-                             DO = dato[13];}*/
-
-
+                    }
 
                     text_P1.setText("P1: "+P1+" Bar");
                     text_P2.setText("P2: "+P2+" Bar");
@@ -416,10 +432,7 @@ public class MainActivity extends AppCompatActivity {
                     text_K2.setText("K2: "+K2+" Kg");
                     text_K3.setText("K3: "+K3+" Kg");
 
-                    text_Inputs.setText(DI);
-                    text_Outputs.setText(DO);
-
-                    ///////////////////////// entradas
+                   ///////////////////////// entradas
 
                     if(DI.substring(0,1).equals("1")){
                         switch_IN_1.setChecked(true);
@@ -578,6 +591,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    void TimmeZone(){
+        text_Inputs.setText("Fecha:");
+        String timeServer = "server 0.pool.ntp.org";
+
+
+
+
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main,menu);
@@ -605,6 +628,8 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 }
 

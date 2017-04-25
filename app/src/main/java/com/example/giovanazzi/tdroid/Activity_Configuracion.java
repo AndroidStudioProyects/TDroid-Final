@@ -472,7 +472,7 @@ public class Activity_Configuracion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 customDialog.dismiss();
-                Toast.makeText(getApplicationContext(),"Cancelado.", Toast.LENGTH_SHORT).show();
+
             }
         });
 

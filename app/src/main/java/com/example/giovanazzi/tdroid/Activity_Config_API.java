@@ -238,12 +238,12 @@ public class Activity_Config_API extends AppCompatActivity {
 
         pass_Nuevo = edit_pass_nuevo.getText().toString();
         password = edit_pass_actual.getText().toString();
-        d(TAG, "pass_Nuevo: " + pass_Nuevo);
-        d(TAG, "password: " + password);
         client = new ClientAsyncTask();
         client.execute(IP, port, "111"); // envia passactual y nuevo
         client = new ClientAsyncTask();
         client.execute(IP, port, password + " " + pass_Nuevo); // envia passactual y nuevo
+        d(TAG, "Envio: " + password+" "+pass_Nuevo);
+
         edit_pass_nuevo.setText("");
 
     }

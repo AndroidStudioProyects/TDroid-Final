@@ -188,6 +188,7 @@
 
         </LinearLayout>
 
+
         <CheckBox
             android:id="@+id/check_ip_port"
             android:layout_width="match_parent"
