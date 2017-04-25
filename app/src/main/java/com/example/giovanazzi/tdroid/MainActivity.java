@@ -146,8 +146,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(!b){
+                    checkBox_Auto.setChecked(true);
                     HabilitarSw(false);
                 }else{
+                    checkBox_Auto.setChecked(false);
                     DialogoPedirPassword();
                 }
             }
