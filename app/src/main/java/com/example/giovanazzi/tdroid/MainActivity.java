@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn_Enviar,btn_Config;
     //EditText editText_IP,editText_port;
     TextView text_H3,text_H2,text_H1,text_P3,text_P2,text_P1,text_T3,text_K2,text_K3,text_K1,text_T2,text_T1,text_Inputs;
+    EditText edit_sw1,edit_sw2,edit_sw3;
     String IP,port,password;
     CheckBox checkBox_Conf,checkBox_Auto;
     String TAG="TrackDroid";
@@ -121,6 +122,25 @@ public class MainActivity extends AppCompatActivity {
         text_T2=(TextView)findViewById(R.id.text_T2);
         text_T3=(TextView)findViewById(R.id.text_T3);
 
+        edit_sw1=(EditText)findViewById(R.id.edit_sw1);
+        edit_sw1.setClickable(false);
+        edit_sw1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                         edit_sw1.setClickable(true);
+                return false;
+            }
+        });
+
+        edit_sw1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                edit_sw1.setClickable(false);
+            }
+        });
+        edit_sw2=(EditText)findViewById(R.id.edit_sw2);
+        edit_sw3=(EditText)findViewById(R.id.edit_sw3);
+
         checkBox_Conf=(CheckBox)findViewById(R.id.checkBox_conf);
         checkBox_Auto=(CheckBox)findViewById(R.id.checkBox_Auto);
     }
@@ -186,6 +206,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        
 
         switch_2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
