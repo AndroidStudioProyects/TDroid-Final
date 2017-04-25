@@ -31,6 +31,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import static android.util.Log.d;
+import static java.lang.Thread.sleep;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
     public SharedPreferences preferencias;
     ClientAsyncTask client;
     Dialog customDialog;
+    Boolean Auto=true;
+    MiThread hilo;
 
 
     @Override
@@ -74,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop(){
         super.onStop();
         checkBox_Conf.setChecked(false);
+        checkBox_Auto.setChecked(false);
     }
 
     void Levantar_XML(){
@@ -128,8 +132,11 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
                     Toast.makeText(getApplicationContext(),"Actualización automática",Toast.LENGTH_SHORT).show();
-
+                    Auto=true;
+                     hilo = new MiThread();
+                    hilo.start();
                 }else{
+                    Auto=false;
 
                 }
             }
@@ -323,7 +330,7 @@ public class MainActivity extends AppCompatActivity {
 
             } else {
                 Toast toast=Toast.makeText(getApplicationContext(),"Actualizado",Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP, 0, 0);
+                toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
 
                 String delimitadores = " ";
@@ -629,7 +636,26 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    class MiThread extends Thread {
+        @Override
+        public void run() {
 
+                while (Auto) {
+                    try {
+
+
+                    sleep(5000);
+                    d(TAG, "hilo puto");
+                    client = new ClientAsyncTask();
+                    client.execute(IP, port, "000");
+
+                } catch(InterruptedException e){
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    }
 
 }
 
