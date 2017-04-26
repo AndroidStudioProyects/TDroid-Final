@@ -44,7 +44,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:weightSum="1"
+                    android:background="@drawable/fondo_1"
+                    android:padding="2dp">
 
                     <TextView
                         android:id="@+id/text_conf1"
@@ -79,7 +81,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:weightSum="1"
+                    android:background="@drawable/fondo_1"
+                    android:padding="2dp">
 
                     <TextView
                         android:id="@+id/text_conf2"
@@ -112,7 +116,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:weightSum="1"
+                    android:background="@drawable/fondo_1"
+                    android:padding="2dp">
 
                     <TextView
                         android:id="@+id/text_conf3"
@@ -145,7 +151,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:weightSum="1"
+                    android:background="@drawable/fondo_1"
+                    android:padding="2dp">
 
                     <TextView
                         android:id="@+id/text_conf4"
@@ -178,7 +186,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:weightSum="1"
+                    android:background="@drawable/fondo_1"
+                    android:padding="2dp">
 
                     <TextView
                         android:id="@+id/text_conf5"
@@ -211,7 +221,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:weightSum="1"
+                    android:background="@drawable/fondo_1"
+                    android:padding="2dp">
 
                     <TextView
                         android:id="@+id/text_conf6"
@@ -244,7 +256,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:weightSum="1"
+                    android:background="@drawable/fondo_1"
+                    android:padding="2dp">
 
                     <TextView
                         android:id="@+id/text_conf7"
@@ -277,7 +291,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:weightSum="1"
+                    android:background="@drawable/fondo_1"
+                    android:padding="2dp">
 
                     <TextView
                         android:id="@+id/text_conf8"
@@ -310,7 +326,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:weightSum="1"
+                    android:background="@drawable/fondo_1"
+                    android:padding="2dp">
 
 
                     <TextView
