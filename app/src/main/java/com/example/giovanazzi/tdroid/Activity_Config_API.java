@@ -51,7 +51,6 @@ public class Activity_Config_API extends AppCompatActivity {
         preferencias=getSharedPreferences("MisPref", Context.MODE_PRIVATE);
         LevantarXML();
         Botones();
-        LevantarPreferencias();
         Dialogo();
         d(TAG, "ON CREATE");
 

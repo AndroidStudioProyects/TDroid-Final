@@ -7,8 +7,6 @@
     android:orientation="vertical"
     tools:context="com.example.giovanazzi.tdroid.MainActivity">
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,21 +39,25 @@
             android:textAlignment="textStart" />
 
     </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+       <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical">
-       <LinearLayout
+            android:orientation="vertical"
+            android:layout_margin="3dp">
+
+<!-- ENTRADAS DIGITALES -->
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_margin="5dp"
-
                 android:orientation="horizontal">
 
                 <TextView
@@ -66,46 +68,70 @@
                     android:textAlignment="center"
                     android:textStyle="bold" />
 
-
-       </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
-                <Switch
-                    android:id="@+id/switch_IN_1"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:clickable="false"
-                    android:text="In 1" />
+                    android:orientation="horizontal"
+                    android:layout_weight=".33">
 
-                <Switch
-                    android:id="@+id/switch_IN_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:clickable="false"
-                    android:text="In 2" />
+                    <TextView
+                        android:id="@+id/text_IN_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_IN1"/>
+                    <Switch
+                        android:id="@+id/switch_IN_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="false"/>
+        </LinearLayout>
 
-                <Switch
-                    android:id="@+id/switch_IN_3"
+        <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:clickable="false"
-                    android:text="In 3" />
+                    android:orientation="horizontal"
+                    android:layout_weight=".33">
 
-                <Switch
-                    android:id="@+id/switch_IN_4"
+                    <TextView
+                        android:id="@+id/text_IN_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_IN1" />
+                    <Switch
+                        android:id="@+id/switch_IN_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="false" />
+                </LinearLayout>
+
+        <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:clickable="false"
-                    android:text="In 4" />
+                    android:orientation="horizontal"
+                    android:layout_weight=".33">
+                    <TextView
+                        android:id="@+id/text_IN_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_IN1"/>
+                    <Switch
+                        android:id="@+id/switch_IN_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="false" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -113,40 +139,115 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
-                <Switch
-                    android:id="@+id/switch_IN_5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:clickable="false"
-                    android:text="In 5" />
 
-                <Switch
-                    android:id="@+id/switch_IN_6"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:clickable="false"
-                    android:text="In 6" />
+                    android:layout_gravity="left"
+                    android:orientation="horizontal"
+                    android:layout_weight=".33">
 
-                <Switch
-                    android:id="@+id/switch_IN_7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:clickable="false"
-                    android:text="In 7" />
+                    <TextView
+                        android:id="@+id/text_IN_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_IN1" />
+                    <Switch
+                        android:id="@+id/switch_IN_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="false" />
+                </LinearLayout>
 
-                <Switch
-                    android:id="@+id/switch_IN_8"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:clickable="false"
-                    android:text="In 8" />
+                    android:orientation="horizontal"
+                    android:layout_weight="0.33">
+                    <TextView
+                        android:id="@+id/text_IN_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_IN1"/>
+                    <Switch
+                        android:id="@+id/switch_IN_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="false" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight=".33">
+                    <TextView
+                        android:id="@+id/text_IN_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_IN1"/>
+                    <Switch
+                        android:id="@+id/switch_IN_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="false" />
+                </LinearLayout>
+
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="0.05">
+
+                    <TextView
+                        android:id="@+id/text_IN_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_IN1" />
+                    <Switch
+                        android:id="@+id/switch_IN_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="false" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="0.05">
+                    <TextView
+                        android:id="@+id/text_IN_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_IN1"/>
+                    <Switch
+                        android:id="@+id/switch_IN_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="false" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+ <!-- SALIDAS DIGITALES -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -174,128 +275,245 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight=".33">
+
+                    <TextView
+                        android:id="@+id/text_Out_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_1" />
+
+                    <Switch
+                        android:id="@+id/switch_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                       android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight=".33">
+
+                    <TextView
+                        android:id="@+id/text_Out_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_2" />
+
+                    <Switch
+                        android:id="@+id/switch_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight=".33">
+
+                    <TextView
+                        android:id="@+id/text_Out_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_3" />
+
+                    <Switch
+                        android:id="@+id/switch_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="1">
+                android:layout_margin="3dp"
+                android:gravity="center">
 
-                <EditText
-                    android:id="@+id/edit_sw1"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sw 1"
-                    android:layout_weight="0.33" />
-                <Switch
-                    android:id="@+id/switch_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="" />
-                <EditText
-                    android:id="@+id/edit_sw2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sw 2"
-                    android:layout_weight="0.35" />
-                <Switch
-                    android:id="@+id/switch_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="" />
-                <EditText
-                    android:id="@+id/edit_sw3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sw 3"
-                    android:layout_weight="0.33" />
-                <Switch
-                    android:id="@+id/switch_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="" />
-            </LinearLayout>
+                    android:orientation="horizontal"
+                    android:layout_weight=".33">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/text_Out_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_4" />
 
-                <Switch
-                    android:id="@+id/switch_4"
+                    <Switch
+                        android:id="@+id/switch_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:text="Sw 4" />
+                    android:orientation="horizontal"
+                    android:layout_weight=".33">
 
-                <Switch
-                    android:id="@+id/switch_5"
+                    <TextView
+                        android:id="@+id/text_Out_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_5" />
+
+                    <Switch
+                        android:id="@+id/switch_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:text="Sw 5" />
+                    android:orientation="horizontal"
+                    android:layout_weight=".33">
 
-                <Switch
-                    android:id="@+id/switch_6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:text="Sw 6" />
+                    <TextView
+                        android:id="@+id/text_Out_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_6" />
+
+                    <Switch
+                        android:id="@+id/switch_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Switch
-                    android:id="@+id/switch_7"
+                android:orientation="horizontal"
+                android:layout_margin="3dp"
+                android:gravity="center">
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:text="Sw 7" />
+                    android:orientation="horizontal"
+                    android:layout_weight=".33">
 
-                <Switch
-                    android:id="@+id/switch_8"
+                    <TextView
+                        android:id="@+id/text_Out_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_7" />
+
+                    <Switch
+                        android:id="@+id/switch_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:text="Sw 8" />
+                    android:orientation="horizontal"
+                    android:layout_weight=".33">
 
-                <Switch
-                    android:id="@+id/switch_9"
+                    <TextView
+                        android:id="@+id/text_Out_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_8" />
+
+                    <Switch
+                        android:id="@+id/switch_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:text="Sw 9" />
+                    android:orientation="horizontal"
+                    android:layout_weight=".33">
+
+                    <TextView
+                        android:id="@+id/text_Out_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_9" />
+
+                    <Switch
+                        android:id="@+id/switch_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_weight=".33">
 
-                <Switch
-                    android:id="@+id/switch_10"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="187dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="0.22"
-                    android:text="Sw 10" />
+                    android:orientation="horizontal">
 
-                <Switch
-                    android:id="@+id/switch_11"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/text_Out_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_10" />
+
+                    <Switch
+                        android:id="@+id/switch_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="145dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="0.21"
-                    android:text="Sw 11" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_Out_11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="switch_11" />
+
+                    <Switch
+                        android:id="@+id/switch_11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
 
 
             </LinearLayout>
+
+<!-- ENTRADAS ANALOGICAS -->
 
             <LinearLayout
                 android:layout_width="match_parent"

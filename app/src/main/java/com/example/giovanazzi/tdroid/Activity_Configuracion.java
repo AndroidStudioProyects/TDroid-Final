@@ -63,17 +63,13 @@ public class Activity_Configuracion extends AppCompatActivity {
         SetSpiners();
         Botones();
         Spiners();
-        LevantarPreferencias();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        preferencias=getSharedPreferences("MisPref", MODE_PRIVATE);
-        IP_Conf=preferencias.getString("IP", "localhost");
-        Port_Conf=preferencias.getString("Port", "9000");
-        password=preferencias.getString("password","1234");
+        LevantarPreferencias();
         d(TAG,"password:"+password);
 
         Conf1=preferencias.getString("Conf1", "nada");
@@ -104,7 +100,6 @@ public class Activity_Configuracion extends AppCompatActivity {
     @Override
     protected void onStop(){
         super.onStop();
-
 
     }
 

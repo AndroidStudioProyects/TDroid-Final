@@ -40,17 +40,25 @@ public class MainActivity extends AppCompatActivity {
 
     Switch switch_1,switch_2,switch_3,switch_4,switch_5,switch_6,switch_7,switch_8,switch_9,switch_10,switch_11;
     Switch switch_IN_1,switch_IN_2,switch_IN_3,switch_IN_4,switch_IN_5,switch_IN_6,switch_IN_7,switch_IN_8;
+
     Button btn_Enviar,btn_Config;
-    //EditText editText_IP,editText_port;
-    TextView text_H3,text_H2,text_H1,text_P3,text_P2,text_P1,text_T3,text_K2,text_K3,text_K1,text_T2,text_T1,text_Inputs;
-    EditText edit_sw1,edit_sw2,edit_sw3;
+
+    TextView text_H3,text_H2,text_H1,text_P3,text_P2,text_P1,text_T3,text_K2,text_K3,text_K1,text_T2,text_T1;
+
+    TextView text_IN_1,text_IN_2,text_IN_3,text_IN_4,text_IN_5,text_IN_6,text_IN_7,text_IN_8;
+    TextView text_Out_1 ,text_Out_2 ,text_Out_3 ,text_Out_4 ,text_Out_5 ,text_Out_6 ,text_Out_7 ,text_Out_8 ,text_Out_9 ,text_Out_10 ,text_Out_11 ;
+
     String IP,port,password;
+    String switch_1_pref,switch_2_pref,switch_3_pref,switch_4_pref,switch_5_pref,switch_6_pref,switch_7_pref,switch_8_pref,switch_9_pref,switch_10_pref,switch_11_pref;
+    String switch_In1_pref,switch_In2_pref,switch_In3_pref,switch_In4_pref,switch_In5_pref,switch_In6_pref,switch_In7_pref,switch_In8_pref;
+
     CheckBox checkBox_Conf,checkBox_Auto;
+
     String TAG="TrackDroid";
     public SharedPreferences preferencias;
     ClientAsyncTask client;
-    Dialog customDialog;
-    Boolean Auto=true;
+    Dialog customDialog,dialogoEditTexto;
+    Boolean Auto=true;;
     MiThread hilo;
 
 
@@ -61,13 +69,14 @@ public class MainActivity extends AppCompatActivity {
         preferencias=getSharedPreferences("MisPref", Context.MODE_PRIVATE);
         Levantar_XML();
         HabilitarSw(false);
-        Botones();
+        Acciones();
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
         LevantarPreferencias();
         client =new ClientAsyncTask();
         client.execute(IP,port,"000");
@@ -77,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop(){
         super.onStop();
+
+        AlmacenarPreferencias();
         checkBox_Conf.setChecked(false);
         checkBox_Auto.setChecked(false);
     }
@@ -94,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         switch_9=(Switch) findViewById(R.id.switch_9);
         switch_10=(Switch) findViewById(R.id.switch_10);
         switch_11=(Switch) findViewById(R.id.switch_11);
+
         switch_IN_1=(Switch)findViewById(R.id.switch_IN_1);
         switch_IN_2=(Switch)findViewById(R.id.switch_IN_2);
         switch_IN_3=(Switch)findViewById(R.id.switch_IN_3);
@@ -105,9 +117,6 @@ public class MainActivity extends AppCompatActivity {
 
         btn_Enviar=(Button)findViewById(R.id.btn_Enviar);
         btn_Config=(Button)findViewById(R.id.btn_config);
-
-   //     editText_IP=(EditText)findViewById(R.id.editText_IP);
-     //   editText_port=(EditText)findViewById(R.id.editText_Port);
 
         text_K1=(TextView)findViewById(R.id.text_K1);
         text_K2=(TextView)findViewById(R.id.text_K2);
@@ -122,30 +131,35 @@ public class MainActivity extends AppCompatActivity {
         text_T2=(TextView)findViewById(R.id.text_T2);
         text_T3=(TextView)findViewById(R.id.text_T3);
 
-        edit_sw1=(EditText)findViewById(R.id.edit_sw1);
-        edit_sw1.setClickable(false);
-        edit_sw1.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                         edit_sw1.setClickable(true);
-                return false;
-            }
-        });
+        text_IN_1=(TextView)findViewById(R.id.text_IN_1);
+        text_IN_2=(TextView)findViewById(R.id.text_IN_2);
+        text_IN_3=(TextView)findViewById(R.id.text_IN_3);
+        text_IN_4=(TextView)findViewById(R.id.text_IN_4);
+        text_IN_5=(TextView)findViewById(R.id.text_IN_5);
+        text_IN_6=(TextView)findViewById(R.id.text_IN_6);
+        text_IN_7=(TextView)findViewById(R.id.text_IN_7);
+        text_IN_8=(TextView)findViewById(R.id.text_IN_8);
 
-        edit_sw1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                edit_sw1.setClickable(false);
-            }
-        });
-        edit_sw2=(EditText)findViewById(R.id.edit_sw2);
-        edit_sw3=(EditText)findViewById(R.id.edit_sw3);
+        text_Out_1=(TextView)findViewById(R.id.text_Out_1);
+        text_Out_2=(TextView)findViewById(R.id.text_Out_2);
+        text_Out_3=(TextView)findViewById(R.id.text_Out_3);
+        text_Out_4=(TextView)findViewById(R.id.text_Out_4);
+        text_Out_5=(TextView)findViewById(R.id.text_Out_5);
+        text_Out_6=(TextView)findViewById(R.id.text_Out_6);
+        text_Out_7=(TextView)findViewById(R.id.text_Out_7);
+        text_Out_8=(TextView)findViewById(R.id.text_Out_8);
+        text_Out_9=(TextView)findViewById(R.id.text_Out_9);
+        text_Out_10=(TextView)findViewById(R.id.text_Out_10);
+        text_Out_11=(TextView)findViewById(R.id.text_Out_11);
 
         checkBox_Conf=(CheckBox)findViewById(R.id.checkBox_conf);
         checkBox_Auto=(CheckBox)findViewById(R.id.checkBox_Auto);
     }
 
-    void Botones(){
+    void Acciones(){
+
+        AccionesTextView();
+        AccionesSwitch();
 
         checkBox_Auto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -154,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Actualización automática",Toast.LENGTH_SHORT).show();
                     Auto=true;
                      hilo = new MiThread();
-                    hilo.start();
+                     hilo.start();
                 }else{
                     Auto=false;
 
@@ -195,124 +209,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        switch_1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                client=new ClientAsyncTask();
-                if(isChecked){
-                    client.execute(new String[]{IP,port,"101"});
-                }else{
-                    client.execute(new String[]{IP,port,"100"});
-                }
-            }
-        });
 
-        
-
-        switch_2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-              client=new ClientAsyncTask();
-                if(isChecked){
-
-                    client.execute(new String[]{IP,port,"201"});
-                }else{
-                    client.execute(new String[]{IP,port,"200"});
-                }
-            }
-        });
-
-        switch_3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-              client=new ClientAsyncTask();
-                if(isChecked){
-                   client.execute(new String[]{IP,port,"301"});
-                }else{
-                    client.execute(new String[]{IP,port,"300"});
-                }
-            }
-        });
-
-        switch_4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-             //   ClientAsyncTask client;
-                 client=new ClientAsyncTask();
-                if(isChecked){client.execute(new String[]{IP,port,"401"});
-                }else{
-                    client.execute(new String[]{IP,port,"400"});
-                }
-            }
-        });
-
-        switch_5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-               // ClientAsyncTask client;
-                client=new ClientAsyncTask();
-                if(isChecked){
-
-                    client.execute(new String[]{IP,port,"501"});
-                }else{
-                    client.execute(new String[]{IP,port,"500"});
-                }
-            }
-        });
-
-        switch_6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                //ClientAsyncTask client;
-                client=new ClientAsyncTask();
-                if(isChecked){
-                    client.execute(new String[]{IP,port,"601"});
-                }else{
-                    client.execute(new String[]{IP,port,"600"});
-                }
-            }
-        });
-
-        switch_7.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                //ClientAsyncTask client;
-                client=new ClientAsyncTask();
-                if(isChecked){
-
-                    client.execute(new String[]{IP,port,"701"});
-                }else{
-                   client.execute(new String[]{IP,port,"700"});
-                }
-            }
-        });
-
-        switch_8.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-     //               ClientAsyncTask client;
-                     client=new ClientAsyncTask();
-                    if(isChecked){
-                       client.execute(new String[]{IP,port,"801"});
-                    }else{
-                        client.execute(new String[]{IP,port,"800"});
-                    }
-                }
-        });
-
-        switch_9.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-       //         ClientAsyncTask client;
-                client=new ClientAsyncTask();
-                if(isChecked){
-
-                    client.execute(new String[]{IP,port,"901"});
-                }else{
-                    client.execute(new String[]{IP,port,"900"});
-                }
-            }
-        });
     }
 
     class ClientAsyncTask extends AsyncTask<String, Void, String> {
@@ -555,12 +452,64 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void LevantarPreferencias(){
+
         IP=preferencias.getString("IP", "localhost");
         if(IP.toString().equals("localhost")){Toast.makeText(getApplicationContext(),"Falta configurar el Servidor",Toast.LENGTH_SHORT).show();}
         port=preferencias.getString("port", "9000");
         password=preferencias.getString("password", "1234");
 
+        switch_1_pref = preferencias.getString("switch_1", "switch 1");
+        switch_2_pref = preferencias.getString("switch_2", "switch 2");
+        switch_3_pref = preferencias.getString("switch_3", "switch 3");
+        switch_4_pref = preferencias.getString("switch_4", "switch 4");
+        switch_5_pref = preferencias.getString("switch_5", "switch 5");
+        switch_6_pref = preferencias.getString("switch_6", "switch 6");
+        switch_7_pref = preferencias.getString("switch_7", "switch 7");
+        switch_8_pref = preferencias.getString("switch_8", "switch 8");
+        switch_9_pref = preferencias.getString("switch_9", "switch 9");
+        switch_10_pref= preferencias.getString("switch_10", "switch 10");
+        switch_11_pref= preferencias.getString("switch_11", "switch 11");
+
+        switch_In1_pref=preferencias.getString("switch_IN_1", "switchIn 1");
+        switch_In2_pref=preferencias.getString("switch_IN_2", "switchIn 2");
+        switch_In3_pref=preferencias.getString("switch_IN_3", "switchIn 3");
+        switch_In4_pref=preferencias.getString("switch_IN_4", "switchIn 4");
+        switch_In5_pref=preferencias.getString("switch_IN_5", "switchIn 5");
+        switch_In6_pref=preferencias.getString("switch_IN_6", "switchIn 6");
+        switch_In7_pref=preferencias.getString("switch_IN_7", "switchIn 7");
+        switch_In8_pref=preferencias.getString("switch_IN_8", "switchIn 8");
+
+        SetearTextoEtiquetas();
+
        }
+
+    private void AlmacenarPreferencias(){
+
+        SharedPreferences.Editor editor=preferencias.edit();
+        editor.putString("switch_1", text_Out_1.getText().toString());
+        editor.putString("switch_2", text_Out_2.getText().toString());
+        editor.putString("switch_3", text_Out_3.getText().toString());
+        editor.putString("switch_4", text_Out_4.getText().toString());
+        editor.putString("switch_5", text_Out_5.getText().toString());
+        editor.putString("switch_6", text_Out_6.getText().toString());
+        editor.putString("switch_7", text_Out_7.getText().toString());
+        editor.putString("switch_8", text_Out_8.getText().toString());
+        editor.putString("switch_9", text_Out_9.getText().toString());
+        editor.putString("switch_10", text_Out_10.getText().toString());
+        editor.putString("switch_11", text_Out_11.getText().toString());
+
+        editor.putString("switch_IN_1", text_IN_1.getText().toString());
+        editor.putString("switch_IN_2", text_IN_2.getText().toString());
+        editor.putString("switch_IN_3", text_IN_3.getText().toString());
+        editor.putString("switch_IN_4", text_IN_4.getText().toString());
+        editor.putString("switch_IN_5", text_IN_5.getText().toString());
+        editor.putString("switch_IN_6", text_IN_6.getText().toString());
+        editor.putString("switch_IN_7", text_IN_7.getText().toString());
+        editor.putString("switch_IN_8", text_IN_8.getText().toString());
+
+        editor.commit();
+
+    }
 
     public void DialogoPedirPassword()  {
         // con este tema personalizado evitamos los bordes por defecto
@@ -574,6 +523,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText editPass=(EditText)customDialog.findViewById(R.id.EditText_Pwd);
         Button botonAcep=(Button) customDialog.findViewById(R.id.btn_acep_pwd);
         Button botonCancel=(Button) customDialog.findViewById(R.id.btn_can_pwd);
+
         botonAcep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -593,6 +543,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
         botonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -604,6 +555,37 @@ public class MainActivity extends AppCompatActivity {
         });
 
         customDialog.show();
+    }
+
+    public void DialogoCambiarTexto(final TextView tx)  {
+        // con este tema personalizado evitamos los bordes por defecto
+        dialogoEditTexto = new Dialog(this,R.style.Theme_AppCompat_Dialog_Alert);
+        //deshabilitamos el título por defecto
+        dialogoEditTexto.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //obligamos al usuario a pulsar los botones para cerrarlo
+        dialogoEditTexto.setCancelable(false);
+        //establecemos el contenido de nuestro dialog
+        dialogoEditTexto.setContentView(R.layout.activity_editartexto);
+
+        final EditText edittexto=(EditText)dialogoEditTexto.findViewById(R.id.edit_Nombre);
+        Button btn_acep_edit=(Button) dialogoEditTexto.findViewById(R.id.btn_acep_edit);
+
+        edittexto.setText(tx.getText().toString());
+
+        btn_acep_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(edittexto.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(),"Ingrese Etiqueta",Toast.LENGTH_SHORT).show();
+                }else {
+                    tx.setText(edittexto.getText().toString());
+                    dialogoEditTexto.dismiss();
+                }
+              }
+        });
+
+        dialogoEditTexto.show();
     }
 
     void HabilitarSw(boolean valor){
@@ -619,16 +601,6 @@ public class MainActivity extends AppCompatActivity {
         switch_9.setClickable(valor);
         switch_10.setClickable(valor);
         switch_11.setClickable(valor);
-
-    }
-
-    void TimmeZone(){
-        text_Inputs.setText("Fecha:");
-        String timeServer = "server 0.pool.ntp.org";
-
-
-
-
 
     }
 
@@ -679,6 +651,305 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+    }
+
+    void SetearTextoEtiquetas(){
+
+        text_Out_1.setText(switch_1_pref);
+        text_Out_2.setText(switch_2_pref);
+        text_Out_3.setText(switch_3_pref);
+        text_Out_4.setText(switch_4_pref);
+        text_Out_5.setText(switch_5_pref);
+        text_Out_6.setText(switch_6_pref);
+        text_Out_7.setText(switch_7_pref);
+        text_Out_8.setText(switch_8_pref);
+        text_Out_9.setText(switch_9_pref);
+        text_Out_10.setText(switch_10_pref);
+        text_Out_11.setText(switch_11_pref);
+
+        text_IN_1.setText(switch_In1_pref);
+        text_IN_2.setText(switch_In2_pref);
+        text_IN_3.setText(switch_In3_pref);
+        text_IN_4.setText(switch_In4_pref);
+        text_IN_5.setText(switch_In5_pref);
+        text_IN_6.setText(switch_In6_pref);
+        text_IN_7.setText(switch_In7_pref);
+        text_IN_8.setText(switch_In8_pref);
+
+    }
+
+    void AccionesTextView(){
+        text_IN_1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_IN_1);
+                return false;
+            }
+        });
+
+        text_IN_2.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_IN_2);
+              return false;
+            }
+        });
+
+        text_IN_3.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_IN_3);
+                return false;
+            }
+        });
+
+        text_IN_4.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_IN_4);
+                return false;
+            }
+        });
+
+
+        text_IN_5.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_IN_5);
+                return false;
+            }
+        });
+
+
+        text_IN_6.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_IN_6);
+                return false;
+            }
+        });
+
+        text_IN_7.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_IN_7);
+
+                return false;
+            }
+        });
+
+        text_IN_8.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_IN_8);
+                return false;
+            }
+        });
+
+
+        text_Out_1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Out_1);
+                return false;
+            }
+        });
+
+        text_Out_2.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Out_2);
+                return false;
+            }
+        });
+
+        text_Out_3.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Out_3);
+                return false;
+            }
+        });
+
+        text_Out_4.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Out_4);
+                return false;
+            }
+        });
+
+        text_Out_5.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Out_5);
+                return false;
+            }
+        });
+
+        text_Out_6.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Out_6);
+                return false;
+            }
+        });
+
+        text_Out_7.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Out_7);
+                return false;
+            }
+        });
+
+        text_Out_8.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Out_8);
+                return false;
+            }
+        });
+
+        text_Out_9.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Out_9);
+                return false;
+            }
+        });
+
+        text_Out_10.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Out_10);
+                return false;
+            }
+        });
+
+        text_Out_11.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Out_11);
+                return false;
+            }
+        });
+    }
+
+    void AccionesSwitch(){
+
+        switch_1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                client=new ClientAsyncTask();
+                if(isChecked){
+                    client.execute(new String[]{IP,port,"101"});
+                }else{
+                    client.execute(new String[]{IP,port,"100"});
+                }
+            }
+        });
+
+        switch_2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                client=new ClientAsyncTask();
+                if(isChecked){
+
+                    client.execute(new String[]{IP,port,"201"});
+                }else{
+                    client.execute(new String[]{IP,port,"200"});
+                }
+            }
+        });
+
+        switch_3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                client=new ClientAsyncTask();
+                if(isChecked){
+                    client.execute(new String[]{IP,port,"301"});
+                }else{
+                    client.execute(new String[]{IP,port,"300"});
+                }
+            }
+        });
+
+        switch_4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                client=new ClientAsyncTask();
+                if(isChecked){client.execute(new String[]{IP,port,"401"});
+                }else{
+                    client.execute(new String[]{IP,port,"400"});
+                }
+            }
+        });
+
+        switch_5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                client=new ClientAsyncTask();
+                if(isChecked){
+
+                    client.execute(new String[]{IP,port,"501"});
+                }else{
+                    client.execute(new String[]{IP,port,"500"});
+                }
+            }
+        });
+
+        switch_6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                client=new ClientAsyncTask();
+                if(isChecked){
+                    client.execute(new String[]{IP,port,"601"});
+                }else{
+                    client.execute(new String[]{IP,port,"600"});
+                }
+            }
+        });
+
+        switch_7.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                client=new ClientAsyncTask();
+                if(isChecked){
+
+                    client.execute(new String[]{IP,port,"701"});
+                }else{
+                    client.execute(new String[]{IP,port,"700"});
+                }
+            }
+        });
+
+        switch_8.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                client=new ClientAsyncTask();
+                if(isChecked){
+                    client.execute(new String[]{IP,port,"801"});
+                }else{
+                    client.execute(new String[]{IP,port,"800"});
+                }
+            }
+        });
+
+        switch_9.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                client=new ClientAsyncTask();
+                if(isChecked){
+
+                    client.execute(new String[]{IP,port,"901"});
+                }else{
+                    client.execute(new String[]{IP,port,"900"});
+                }
+            }
+        });
+
+
     }
 
 }
