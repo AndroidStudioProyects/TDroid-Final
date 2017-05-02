@@ -638,7 +638,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
 
 
-                    sleep(3000);
+                    sleep(4000);
                     d(TAG, "hilo puto");
                     client = new ClientAsyncTask();
                     client.execute(IP, port, "000");

@@ -63,6 +63,7 @@ public class Activity_Configuracion extends AppCompatActivity {
         SetSpiners();
         Botones();
         Spiners();
+        LevantarPreferencias();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
