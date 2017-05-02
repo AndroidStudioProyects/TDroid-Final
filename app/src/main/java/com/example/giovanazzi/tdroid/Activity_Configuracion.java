@@ -70,7 +70,7 @@ public class Activity_Configuracion extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         LevantarPreferencias();
-        d(TAG,"password:"+password);
+        d(TAG,"password_Conf:"+password_Conf);
 
         Conf1=preferencias.getString("Conf1", "nada");
         Conf2=preferencias.getString("Conf2", "Bar");
@@ -337,8 +337,8 @@ public class Activity_Configuracion extends AppCompatActivity {
             client = new ClientAsyncTask();
             client.execute(IP_Conf, Port_Conf, "999");
             client = new ClientAsyncTask();
-            client.execute(IP_Conf, Port_Conf, Conf1 + " " + Conf2 + " " + Conf3 + " " + Conf4 + " " + Conf5 + " " + Conf6 + " " + Conf7 + " " + Conf8 + " " + Conf9 + " " + password);
-            d(TAG, "Configuracion Enviada: " + Conf1 + " " + Conf2 + " " + Conf3 + " " + Conf4 + " " + Conf5 + " " + Conf6 + " " + Conf7 + " " + Conf8 + " " + Conf9 + " " + password);
+            client.execute(IP_Conf, Port_Conf, Conf1 + " " + Conf2 + " " + Conf3 + " " + Conf4 + " " + Conf5 + " " + Conf6 + " " + Conf7 + " " + Conf8 + " " + Conf9 + " "+ password_Conf);
+            d(TAG, "Configuracion Enviada: " + Conf1 + " " + Conf2 + " " + Conf3 + " " + Conf4 + " " + Conf5 + " " + Conf6 + " " + Conf7 + " " + Conf8 + " " + Conf9 +" "+ password_Conf);
         }
 
     }
@@ -452,7 +452,7 @@ public class Activity_Configuracion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 customDialog.dismiss();
-              if(editPass.getText().toString().equals(password)){
+              if(editPass.getText().toString().equals(password_Conf)){
 
                     Toast.makeText(getApplicationContext(), "Enviando...", Toast.LENGTH_SHORT).show();
                     LevantarDatos();
@@ -513,8 +513,7 @@ public class Activity_Configuracion extends AppCompatActivity {
                         "Conf6: " + edit_Conf6.getText().toString()+" "+Posicion(spinpos6)+"\n"+
                         "Conf7: " + edit_Conf7.getText().toString()+" "+Posicion(spinpos7)+"\n"+
                         "Conf8: " + edit_Conf8.getText().toString()+" "+Posicion(spinpos8)+"\n"+
-                        "Conf9: " + edit_Conf9.getText().toString()+" "+Posicion(spinpos9)+"\n"+
-                        "Password : " + password);
+                        "Conf9: " + edit_Conf9.getText().toString()+" "+Posicion(spinpos9)+"\n");
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
 

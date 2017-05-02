@@ -26,12 +26,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 import static android.util.Log.d;
-import static java.lang.Thread.sleep;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -640,7 +638,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
 
 
-                    sleep(5000);
+                    sleep(3000);
                     d(TAG, "hilo puto");
                     client = new ClientAsyncTask();
                     client.execute(IP, port, "000");
