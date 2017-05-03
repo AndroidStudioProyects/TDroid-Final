@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
           <item
               android:id="@+id/menu_conf"
-              android:title="Configuración" />
+              android:title="Configuración"/>
           <item
                 android:id="@+id/menu_compartir"
-             android:title="Compartir Conf." />
+                android:title="Compartir Conf." />
           <item
                 android:id="@+id/menu_solicitar_pass"
                 android:title="Visualizar contraseña " />

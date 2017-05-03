@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/md_green_200"
+    android:background="@drawable/fondo_3"
     tools:context="com.example.giovanazzi.tdroid.MainActivity">
 
     <LinearLayout
@@ -21,27 +21,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="3dp"
+            android:layout_weight="0.33"
             android:background="@drawable/selector_1"
-            android:text="Conf. Remota"
-            android:layout_weight="0.33" />
+            android:text="Conf. Remota" />
 
         <Button
             android:id="@+id/btn_Enviar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="3dp"
+            android:layout_weight="0.33"
             android:background="@drawable/selector_1"
-            android:text="Actualizar"
-            android:layout_weight="0.33"/>
+            android:text="Actualizar" />
 
         <CheckBox
             android:id="@+id/checkBox_Auto"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@drawable/fondo_1"
-            android:text="Auto"
-            android:layout_weight="0.33" />
+            android:layout_margin="3dp"
+            android:background="@drawable/selector_1"
+            android:text="Auto" />
 
     </LinearLayout>
 
@@ -88,6 +89,7 @@
                     android:orientation="horizontal"
                     android:background="@drawable/fondo_1"
                     android:padding="2dp"
+                    android:layout_margin="2dp"
                     android:layout_weight=".33">
 
                     <TextView
@@ -109,6 +111,7 @@
                     android:orientation="horizontal"
                     android:layout_weight=".33"
                     android:background="@drawable/fondo_1"
+                    android:layout_margin="2dp"
                     android:padding="2dp">
 
                     <TextView
@@ -129,6 +132,7 @@
                     android:orientation="horizontal"
                     android:layout_weight=".33"
                     android:background="@drawable/fondo_1"
+                    android:layout_margin="2dp"
                     android:padding="2dp">
                     <TextView
                         android:id="@+id/text_IN_3"
@@ -158,6 +162,7 @@
                     android:layout_gravity="left"
                     android:orientation="horizontal"
                     android:layout_weight=".33"
+                    android:layout_margin="2dp"
                     android:background="@drawable/fondo_1"
                     android:padding="2dp">
 
@@ -179,6 +184,8 @@
                     android:orientation="horizontal"
                     android:layout_weight="0.33"
                     android:background="@drawable/fondo_1"
+                    android:layout_margin="2dp"
+
                     android:padding="2dp">
                     <TextView
                         android:id="@+id/text_IN_5"
@@ -198,6 +205,8 @@
                     android:orientation="horizontal"
                     android:layout_weight=".33"
                     android:background="@drawable/fondo_1"
+                    android:layout_margin="2dp"
+
                     android:padding="2dp">
                     <TextView
                         android:id="@+id/text_IN_6"
@@ -228,6 +237,7 @@
                     android:orientation="horizontal"
                     android:layout_weight="0.33"
                     android:background="@drawable/fondo_1"
+                    android:layout_margin="2dp"
                     android:padding="2dp">
 
                     <TextView
@@ -248,6 +258,7 @@
                     android:orientation="horizontal"
                     android:layout_weight="0.33"
                     android:background="@drawable/fondo_1"
+                    android:layout_margin="2dp"
                     android:padding="2dp">
                     <TextView
                         android:id="@+id/text_IN_8"
@@ -268,6 +279,8 @@
                     android:visibility="invisible"
                     android:layout_weight="0.33"
                     android:background="@drawable/fondo_1"
+                    android:layout_margin="2dp"
+
                     android:padding="2dp">
                     <TextView
                         android:id="@+id/text_IN_9"

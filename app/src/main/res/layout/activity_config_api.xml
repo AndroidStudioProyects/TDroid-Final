@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_margin="3dp"
     android:layout_width="match_parent"
-    android:background="@color/md_green_200"
+    android:background="@drawable/fondo_3"
     android:layout_height="match_parent"
     android:weightSum="1">
 
@@ -53,6 +53,7 @@
                     android:ems="10"
                     android:hint="4 digitos"
                     android:inputType="numberPassword"
+                    android:background="@drawable/fondo_3"
                     android:maxLength="4"
                     android:textAlignment="center" />
 
@@ -80,6 +81,7 @@
                     android:layout_margin="3dp"
                     android:ems="10"
                     android:hint="4 digitos"
+                    android:background="@drawable/fondo_3"
                     android:inputType="numberPassword"
                     android:maxLength="4"
                     android:textAlignment="center" />
@@ -109,6 +111,7 @@
                     android:ems="10"
                     android:hint="4 digitos"
                     android:inputType="numberPassword"
+                    android:background="@drawable/fondo_3"
                     android:maxLength="4"
                     android:textAlignment="center" />
 
@@ -120,6 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/selector_1"
+                android:layout_margin="3dp"
                 android:text="Grabar Contraseña Remota" />
 
         </LinearLayout>
@@ -163,8 +167,10 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:enabled="false"
+                android:layout_margin="3dp"
                 android:inputType="textPersonName"
                 android:text="localhost"
+                android:background="@drawable/fondo_3"
                 android:textAlignment="center" />
 
         </LinearLayout>
@@ -191,6 +197,8 @@
                 android:inputType="number"
                 android:maxLength="4"
                 android:text="9000"
+                android:background="@drawable/fondo_3"
+                android:layout_margin="3dp"
                 android:textAlignment="center" />
 
         </LinearLayout>

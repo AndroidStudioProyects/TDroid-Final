@@ -38,7 +38,7 @@ import static android.util.Log.d;
 public class Activity_Configuracion extends AppCompatActivity {
 
     String TAG="TrackDroid";
-    Dialog customDialog = null;
+
     ClientAsyncTask client;
     Button btn_Guardar,btn_Actualizar;
     //EditText editText_IP,editText_port;
@@ -49,10 +49,13 @@ public class Activity_Configuracion extends AppCompatActivity {
     String IP_Conf,Port_Conf,password_Conf;
     String Unidades[]={"Bar","Kg","°C","%"};
     Spinner spin_Conf1,spin_Conf2,spin_Conf3,spin_Conf4,spin_Conf5,spin_Conf6,spin_Conf7,spin_Conf8,spin_Conf9;
-    String Conf1,Conf2,Conf3,Conf4,Conf5,Conf6,Conf7,Conf8,Conf9,password;
+    String Conf1,Conf2,Conf3,Conf4,Conf5,Conf6,Conf7,Conf8,Conf9;
+    String text_Conf1_pref,text_Conf2_pref,text_Conf3_pref,text_Conf4_pref,text_Conf5_pref,text_Conf6_pref,text_Conf7_pref,text_Conf8_pref,text_Conf9_pref;
+
     public SharedPreferences preferencias;
     SharedPreferences.Editor editor;
     int spinpos1,spinpos2,spinpos3,spinpos4,spinpos5,spinpos6,spinpos7,spinpos8,spinpos9;
+    Dialog customDialog,dialogoEditTexto;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,7 +66,7 @@ public class Activity_Configuracion extends AppCompatActivity {
         SetSpiners();
         Botones();
         Spiners();
-        LevantarPreferencias();
+        AccionesTextView();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
@@ -71,9 +74,10 @@ public class Activity_Configuracion extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         LevantarPreferencias();
+
         d(TAG,"password_Conf:"+password_Conf);
 
-        Conf1=preferencias.getString("Conf1", "nada");
+        Conf1=preferencias.getString("Conf1", "Bar");
         Conf2=preferencias.getString("Conf2", "Bar");
         Conf3=preferencias.getString("Conf3", "Bar");
         Conf4=preferencias.getString("Conf4", "Bar");
@@ -101,6 +105,7 @@ public class Activity_Configuracion extends AppCompatActivity {
     @Override
     protected void onStop(){
         super.onStop();
+        AlmacenarPreferencias();
 
     }
 
@@ -127,14 +132,29 @@ public class Activity_Configuracion extends AppCompatActivity {
         text_Conf9=(TextView)findViewById(R.id.text_conf9);
 
         edit_Conf1=(EditText)findViewById(R.id.edit_conf1);
+        edit_Conf1.setSelection(edit_Conf1.getText().length());// posiciona cursor en la parte final del texto
         edit_Conf2=(EditText)findViewById(R.id.edit_conf2);
+        edit_Conf2.setSelection(edit_Conf2.getText().length());// posiciona cursor en la parte final del texto
         edit_Conf3=(EditText)findViewById(R.id.edit_conf3);
+        edit_Conf3.setSelection(edit_Conf3.getText().length());// posiciona cursor en la parte final del texto
         edit_Conf4=(EditText)findViewById(R.id.edit_conf4);
+        edit_Conf4.setSelection(edit_Conf4.getText().length());// posiciona cursor en la parte final del texto
+
         edit_Conf5=(EditText)findViewById(R.id.edit_conf5);
+        edit_Conf5.setSelection(edit_Conf5.getText().length());// posiciona cursor en la parte final del texto
+
         edit_Conf6=(EditText)findViewById(R.id.edit_conf6);
+        edit_Conf6.setSelection(edit_Conf6.getText().length());// posiciona cursor en la parte final del texto
+
         edit_Conf7=(EditText)findViewById(R.id.edit_conf7);
+        edit_Conf7.setSelection(edit_Conf7.getText().length());// posiciona cursor en la parte final del texto
+
         edit_Conf8=(EditText)findViewById(R.id.edit_conf8);
+        edit_Conf8.setSelection(edit_Conf8.getText().length());// posiciona cursor en la parte final del texto
+
         edit_Conf9=(EditText)findViewById(R.id.edit_conf9);
+        edit_Conf9.setSelection(edit_Conf9.getText().length());// posiciona cursor en la parte final del texto
+
 
         btn_Guardar=(Button)findViewById(R.id.btn_guardar);
         btn_Actualizar=(Button)findViewById(R.id.btn_Actualizar);
@@ -481,6 +501,164 @@ public class Activity_Configuracion extends AppCompatActivity {
         Port_Conf=preferencias.getString("port", "9000");
         password_Conf=preferencias.getString("password", "1234");
         d(TAG, "password_Conf:"+password_Conf);
+
+        text_Conf1_pref=preferencias.getString("text_Conf_1", "Conf 1");
+        text_Conf2_pref=preferencias.getString("text_Conf_2", "Conf 2");
+        text_Conf3_pref=preferencias.getString("text_Conf_3", "Conf 3");
+        text_Conf4_pref=preferencias.getString("text_Conf_4", "Conf 4");
+        text_Conf5_pref=preferencias.getString("text_Conf_5", "Conf 5");
+        text_Conf6_pref=preferencias.getString("text_Conf_6", "Conf 6");
+        text_Conf7_pref=preferencias.getString("text_Conf_7", "Conf 7");
+        text_Conf8_pref=preferencias.getString("text_Conf_8", "Conf 8");
+        text_Conf9_pref=preferencias.getString("text_Conf_9", "Conf 9");
+        SetearTextoEtiquetas();
+
+    }
+
+    private void AlmacenarPreferencias(){
+
+        SharedPreferences.Editor editor=preferencias.edit();
+        editor.putString("text_Conf_1", text_Conf1.getText().toString());
+        editor.putString("text_Conf_2", text_Conf2.getText().toString());
+        editor.putString("text_Conf_3", text_Conf3.getText().toString());
+        editor.putString("text_Conf_4", text_Conf4.getText().toString());
+        editor.putString("text_Conf_5", text_Conf5.getText().toString());
+        editor.putString("text_Conf_6", text_Conf6.getText().toString());
+        editor.putString("text_Conf_7", text_Conf7.getText().toString());
+        editor.putString("text_Conf_8", text_Conf8.getText().toString());
+        editor.putString("text_Conf_9", text_Conf9.getText().toString());
+
+        editor.commit();
+
+    }
+
+
+    public void DialogoCambiarTexto(final TextView tx)  {
+        // con este tema personalizado evitamos los bordes por defecto
+        dialogoEditTexto = new Dialog(this,R.style.Theme_AppCompat_Dialog_Alert);
+        //deshabilitamos el título por defecto
+        dialogoEditTexto.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //obligamos al usuario a pulsar los botones para cerrarlo
+        dialogoEditTexto.setCancelable(false);
+        //establecemos el contenido de nuestro dialog
+        dialogoEditTexto.setContentView(R.layout.activity_editartexto);
+
+        final EditText edittexto=(EditText)dialogoEditTexto.findViewById(R.id.edit_Nombre);
+
+        Button btn_acep_edit=(Button) dialogoEditTexto.findViewById(R.id.btn_acep_edit);
+
+        edittexto.setText(tx.getText().toString());
+        //int position = edittexto.getText().length();
+        edittexto.setSelection(edittexto.getText().length());// posiciona cursor en la parte final del texto
+
+        btn_acep_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(edittexto.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(),"Ingrese Etiqueta",Toast.LENGTH_SHORT).show();
+                }else {
+                    tx.setText(edittexto.getText().toString());
+                    dialogoEditTexto.dismiss();
+                }
+            }
+        });
+
+        dialogoEditTexto.show();
+    }
+
+    void SetearTextoEtiquetas(){
+
+        text_Conf1.setText(text_Conf1_pref);
+        text_Conf2.setText(text_Conf2_pref);
+        text_Conf3.setText(text_Conf3_pref);
+        text_Conf4.setText(text_Conf4_pref);
+        text_Conf5.setText(text_Conf5_pref);
+        text_Conf6.setText(text_Conf6_pref);
+        text_Conf7.setText(text_Conf7_pref);
+        text_Conf8.setText(text_Conf8_pref);
+        text_Conf9.setText(text_Conf9_pref);
+
+    }
+
+    void AccionesTextView(){
+
+        text_Conf1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Conf1);
+                return false;
+            }
+        });
+
+        text_Conf2.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Conf2);
+                return false;
+            }
+        });
+
+        text_Conf3.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Conf3);
+                return false;
+            }
+        });
+
+        text_Conf4.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Conf4);
+                return false;
+            }
+        });
+
+
+        text_Conf5.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Conf5);
+                return false;
+            }
+        });
+
+
+        text_Conf6.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Conf6);
+                return false;
+            }
+        });
+
+        text_Conf7.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Conf7);
+
+                return false;
+            }
+        });
+
+        text_Conf8.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Conf8);
+                return false;
+            }
+        });
+
+
+        text_Conf9.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogoCambiarTexto(text_Conf9);
+                return false;
+            }
+        });
+
 
     }
 

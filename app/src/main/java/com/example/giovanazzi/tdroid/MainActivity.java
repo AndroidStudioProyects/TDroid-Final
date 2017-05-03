@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         Levantar_XML();
         HabilitarSw(false);
         Acciones();
+        LevantarPreferencias();
 
     }
 
@@ -566,9 +568,12 @@ public class MainActivity extends AppCompatActivity {
         dialogoEditTexto.setContentView(R.layout.activity_editartexto);
 
         final EditText edittexto=(EditText)dialogoEditTexto.findViewById(R.id.edit_Nombre);
+
         Button btn_acep_edit=(Button) dialogoEditTexto.findViewById(R.id.btn_acep_edit);
 
         edittexto.setText(tx.getText().toString());
+        //int position = edittexto.getText().length();
+        edittexto.setSelection(edittexto.getText().length());// posiciona cursor en la parte final del texto
 
         btn_acep_edit.setOnClickListener(new View.OnClickListener() {
             @Override
