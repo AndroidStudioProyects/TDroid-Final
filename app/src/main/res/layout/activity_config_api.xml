@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
         android:orientation="horizontal"
-        android:background="@drawable/fondo_1"
+        android:background="@drawable/fondo_4"
         android:padding="3dp">
 
         <LinearLayout
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:enabled="false"
-                    android:background="@drawable/fondo_3"
+                    android:background="@drawable/selector_edittext"
                     android:ems="10"
                     android:inputType="numberPassword"
                     android:maxLength="4"
@@ -80,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
-                    android:background="@drawable/fondo_3"
+                    android:background="@drawable/selector_edittext"
                     android:ems="10"
                     android:inputType="numberPassword"
                     android:maxLength="4"
@@ -108,7 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
-                    android:background="@drawable/fondo_3"
+                    android:background="@drawable/selector_edittext"
                     android:ems="10"
                     android:inputType="numberPassword"
                     android:maxLength="4"
@@ -118,11 +118,7 @@
 
             <Button
                 android:id="@+id/btn_grabarPass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/selector_1"
-                android:layout_margin="3dp"
+                style="@style/EstiloBoton"
                 android:text="Grabar Contraseña Remota" />
 
         </LinearLayout>
@@ -135,7 +131,7 @@
         android:layout_gravity="center"
         android:orientation="vertical"
         android:layout_margin="3dp"
-        android:background="@drawable/fondo_1"
+        android:background="@drawable/fondo_4"
         android:padding="3dp">
 
         <TextView
@@ -165,7 +161,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
-                android:background="@drawable/fondo_3"
+                android:background="@drawable/selector_edittext"
                 android:ems="10"
                 android:enabled="false"
                 android:inputType="textPersonName"
@@ -196,7 +192,7 @@
                 android:inputType="number"
                 android:maxLength="4"
                 android:text="9000"
-                android:background="@drawable/fondo_3"
+                android:background="@drawable/selector_edittext"
                 android:layout_margin="3dp"
                 android:textAlignment="center" />
 

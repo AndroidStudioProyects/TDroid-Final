@@ -457,26 +457,26 @@ public class MainActivity extends AppCompatActivity {
         if(password.toString().equals("1234")){Toast.makeText(getApplicationContext(),"La contraseña es por defecto",Toast.LENGTH_SHORT).show();}
 
 
-        switch_1_pref = preferencias.getString("switch_1", "switch 1");
-        switch_2_pref = preferencias.getString("switch_2", "switch 2");
-        switch_3_pref = preferencias.getString("switch_3", "switch 3");
-        switch_4_pref = preferencias.getString("switch_4", "switch 4");
-        switch_5_pref = preferencias.getString("switch_5", "switch 5");
-        switch_6_pref = preferencias.getString("switch_6", "switch 6");
-        switch_7_pref = preferencias.getString("switch_7", "switch 7");
-        switch_8_pref = preferencias.getString("switch_8", "switch 8");
-        switch_9_pref = preferencias.getString("switch_9", "switch 9");
-        switch_10_pref= preferencias.getString("switch_10", "switch 10");
-        switch_11_pref= preferencias.getString("switch_11", "switch 11");
+        switch_1_pref = preferencias.getString("switch_1", "Salida 1");
+        switch_2_pref = preferencias.getString("switch_2", "Salida 2");
+        switch_3_pref = preferencias.getString("switch_3", "Salida 3");
+        switch_4_pref = preferencias.getString("switch_4", "Salida 4");
+        switch_5_pref = preferencias.getString("switch_5", "Salida 5");
+        switch_6_pref = preferencias.getString("switch_6", "Salida 6");
+        switch_7_pref = preferencias.getString("switch_7", "Salida 7");
+        switch_8_pref = preferencias.getString("switch_8", "Salida 8");
+        switch_9_pref = preferencias.getString("switch_9", "Salida 9");
+        switch_10_pref= preferencias.getString("switch_10", "Salida 10");
+        switch_11_pref= preferencias.getString("switch_11", "Salida 11");
 
-        switch_In1_pref=preferencias.getString("switch_IN_1", "switchIn 1");
-        switch_In2_pref=preferencias.getString("switch_IN_2", "switchIn 2");
-        switch_In3_pref=preferencias.getString("switch_IN_3", "switchIn 3");
-        switch_In4_pref=preferencias.getString("switch_IN_4", "switchIn 4");
-        switch_In5_pref=preferencias.getString("switch_IN_5", "switchIn 5");
-        switch_In6_pref=preferencias.getString("switch_IN_6", "switchIn 6");
-        switch_In7_pref=preferencias.getString("switch_IN_7", "switchIn 7");
-        switch_In8_pref=preferencias.getString("switch_IN_8", "switchIn 8");
+        switch_In1_pref=preferencias.getString("switch_IN_1", "Entrada 1");
+        switch_In2_pref=preferencias.getString("switch_IN_2", "Entrada 2");
+        switch_In3_pref=preferencias.getString("switch_IN_3", "Entrada 3");
+        switch_In4_pref=preferencias.getString("switch_IN_4", "Entrada 4");
+        switch_In5_pref=preferencias.getString("switch_IN_5", "Entrada 5");
+        switch_In6_pref=preferencias.getString("switch_IN_6", "Entrada 6");
+        switch_In7_pref=preferencias.getString("switch_IN_7", "Entrada 7");
+        switch_In8_pref=preferencias.getString("switch_IN_8", "Entrada 8");
 
         SetearTextoEtiquetas();
 

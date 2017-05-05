@@ -5,35 +5,6 @@
     android:background="@drawable/fondo_3"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        android:weightSum="1">
-
-        <Button
-            android:id="@+id/btn_guardar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:background="@drawable/selector_1"
-            android:layout_weight="0.5"
-            android:padding="5dp"
-            android:text="Guardar" />
-
-        <Button
-            android:id="@+id/btn_Actualizar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:background="@drawable/selector_1"
-            android:padding="5dp"
-            android:layout_weight="0.5"
-            android:text="Actualizar" />
-
-
-    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -62,32 +33,17 @@
 
                     <TextView
                         android:id="@+id/text_conf1"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_textview"
-                        android:text="Conf 1:"
-                        android:textAlignment="center"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        style="@style/StyleTextView"
+                        android:text="Conf 1:" />
 
                     <EditText
                         android:id="@+id/edit_conf1"
-                        android:layout_width="89dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_edittext"
-                        android:ems="10"
-                        android:gravity="end"
-                        android:inputType="number"
-                        android:maxLength="6"
+                        style="@style/StyleEditText"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf1"
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"/>
+                        style="@style/StyleSpinner"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -100,31 +56,17 @@
 
                     <TextView
                         android:id="@+id/text_conf2"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_textview"
-                        android:text="Conf 2:"
-                        android:textAlignment="center"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        style="@style/StyleTextView"
+                        android:text="Conf 2:" />
 
                     <EditText
                         android:id="@+id/edit_conf2"
-                        android:layout_width="89dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_edittext"
-                        android:ems="10"
-                        android:gravity="end"
-                        android:inputType="number"
-                        android:maxLength="6"
+                        style="@style/StyleEditText"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf2"
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content" />
+                        style="@style/StyleSpinner"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -137,31 +79,17 @@
 
                     <TextView
                         android:id="@+id/text_conf3"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_textview"
-                        android:text="Conf 3:"
-                        android:textAlignment="center"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        style="@style/StyleTextView"
+                        android:text="Conf 3:" />
 
                     <EditText
                         android:id="@+id/edit_conf3"
-                        android:layout_width="89dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_edittext"
-                        android:ems="10"
-                        android:gravity="end"
-                        android:inputType="number"
-                        android:maxLength="6"
+                        style="@style/StyleEditText"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf3"
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content" />
+                        style="@style/StyleSpinner"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -174,31 +102,17 @@
 
                     <TextView
                         android:id="@+id/text_conf4"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_textview"
-                        android:text="Conf 4:"
-                        android:textAlignment="center"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        style="@style/StyleTextView"
+                        android:text="Conf 4:" />
 
                     <EditText
                         android:id="@+id/edit_conf4"
-                        android:layout_width="89dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_edittext"
-                        android:ems="10"
-                        android:gravity="end"
-                        android:inputType="number"
-                        android:maxLength="6"
+                        style="@style/StyleEditText"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf4"
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content" />
+                        style="@style/StyleSpinner"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -211,31 +125,17 @@
 
                     <TextView
                         android:id="@+id/text_conf5"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_textview"
-                        android:text="Conf 5:"
-                        android:textAlignment="center"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        style="@style/StyleTextView"
+                        android:text="Conf 5:" />
 
                     <EditText
                         android:id="@+id/edit_conf5"
-                        android:layout_width="89dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_edittext"
-                        android:ems="10"
-                        android:gravity="end"
-                        android:inputType="number"
-                        android:maxLength="6"
+                        style="@style/StyleEditText"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf5"
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content" />
+                        style="@style/StyleSpinner"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -248,31 +148,17 @@
 
                     <TextView
                         android:id="@+id/text_conf6"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_textview"
-                        android:text="Conf 6:"
-                        android:textAlignment="center"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        style="@style/StyleTextView"
+                        android:text="Conf 6:" />
 
                     <EditText
                         android:id="@+id/edit_conf6"
-                        android:layout_width="89dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_edittext"
-                        android:ems="10"
-                        android:gravity="end"
-                        android:inputType="number"
-                        android:maxLength="6"
+                        style="@style/StyleEditText"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf6"
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content" />
+                        style="@style/StyleSpinner"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -285,31 +171,17 @@
 
                     <TextView
                         android:id="@+id/text_conf7"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_textview"
-                        android:text="Conf 7:"
-                        android:textAlignment="center"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        style="@style/StyleTextView"
+                        android:text="Conf 7:" />
 
                     <EditText
                         android:id="@+id/edit_conf7"
-                        android:layout_width="89dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_edittext"
-                        android:ems="10"
-                        android:gravity="end"
-                        android:inputType="number"
-                        android:maxLength="6"
+                        style="@style/StyleEditText"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf7"
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content" />
+                        style="@style/StyleSpinner"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -322,31 +194,17 @@
 
                     <TextView
                         android:id="@+id/text_conf8"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_textview"
-                        android:text="Conf 8:"
-                        android:textAlignment="center"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        style="@style/StyleTextView"
+                        android:text="Conf 8:" />
 
                     <EditText
                         android:id="@+id/edit_conf8"
-                        android:layout_width="89dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_edittext"
-                        android:ems="10"
-                        android:gravity="end"
-                        android:inputType="number"
-                        android:maxLength="6"
+                        style="@style/StyleEditText"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf8"
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content" />
+                        style="@style/StyleSpinner"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -360,36 +218,44 @@
 
                     <TextView
                         android:id="@+id/text_conf9"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_textview"
-                        android:text="Conf 9:"
-                        android:textAlignment="center"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        style="@style/StyleTextView"
+                        android:text="Conf 9:" />
 
                     <EditText
                         android:id="@+id/edit_conf9"
-                        android:layout_width="89dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/selector_edittext"
-                        android:ems="10"
-                        android:gravity="end"
-                        android:inputType="number"
-                        android:maxLength="6"
+                        style="@style/StyleEditText"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf9"
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content" />
+                        style="@style/StyleSpinner"/>
                 </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/btn_guardar"
+            android:layout_weight="0.5"
+            style="@style/EstiloBoton"
+            android:text="Guardar" />
+
+        <Button
+            android:id="@+id/btn_Actualizar"
+            style="@style/EstiloBoton"
+            android:layout_weight="0.5"
+            android:text="Actualizar" />
+
+
+    </LinearLayout>
 
 </LinearLayout>
