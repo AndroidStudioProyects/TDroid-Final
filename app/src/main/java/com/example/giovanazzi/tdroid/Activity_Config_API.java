@@ -69,7 +69,6 @@ public class Activity_Config_API extends AppCompatActivity {
     @Override
     protected void onStop(){
         super.onStop();
-       AlmacenarPreferencias();
         d(TAG, "ON STOP");
     }
 
@@ -78,11 +77,12 @@ public class Activity_Config_API extends AppCompatActivity {
         btn_grabarPass=(Button)findViewById(R.id.btn_grabarPass);
 
         edit_pass_actual=(EditText)findViewById(R.id.edit_pass_actual);
-
+        edit_pass_actual.setEnabled(false);
         edit_pass_nuevo=(EditText)findViewById(R.id.edit_pass_nuevo);
         edit_repass_nuevo=(EditText)findViewById(R.id.edit_repass_nuevo);
 
         edit_IP_Menu=(EditText)findViewById(R.id.edit_IP_Menu);
+
         edit_Puerto_Menu=(EditText)findViewById(R.id.edit_Puerto_Menu);
 
         checkBox_ip_port=(CheckBox)findViewById(R.id.check_ip_port);
@@ -135,11 +135,13 @@ public class Activity_Config_API extends AppCompatActivity {
                 if(isChecked){
                    edit_IP_Menu.setEnabled(true);
                    edit_Puerto_Menu.setEnabled(true);
+                   edit_pass_actual.setEnabled(true);
                 }else{
                    AlmacenarPreferencias();
                    edit_IP_Menu.setEnabled(false);
                    edit_Puerto_Menu.setEnabled(false);
-                   Toast.makeText(getApplicationContext(),"Dato Almacenado",Toast.LENGTH_SHORT).show();
+                   edit_pass_actual.setEnabled(false);
+                   Toast.makeText(getApplicationContext(),"Datos Guardados",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -212,11 +214,14 @@ public class Activity_Config_API extends AppCompatActivity {
     private void LevantarPreferencias(){
 
         IP=preferencias.getString("IP", "localhost");
+        if(IP.toString().equals("localhost")){Toast.makeText(getApplicationContext(),"Falta configurar el Servidor",Toast.LENGTH_SHORT).show();}
+
         port=preferencias.getString("port", "9000");
         password=preferencias.getString("password", "1234");
+        if(password.toString().equals("1234")){Toast.makeText(getApplicationContext(),"La contraseña es por defecto",Toast.LENGTH_SHORT).show();}
         edit_IP_Menu.setText(IP);
         edit_Puerto_Menu.setText(port);
-        edit_pass_actual.setText(password);
+      //  edit_pass_actual.setText(password);
     }
 
     private void AlmacenarPreferencias(){

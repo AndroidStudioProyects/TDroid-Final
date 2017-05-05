@@ -74,7 +74,6 @@ public class Activity_Configuracion extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         LevantarPreferencias();
-
         d(TAG,"password_Conf:"+password_Conf);
 
         Conf1=preferencias.getString("Conf1", "Bar");
@@ -496,6 +495,7 @@ public class Activity_Configuracion extends AppCompatActivity {
     }
 
     private void LevantarPreferencias(){
+
         IP_Conf=preferencias.getString("IP", "localhost");
         if(IP_Conf.toString().equals("localhost")){Toast.makeText(getApplicationContext(),"Falta configurar el Servidor",Toast.LENGTH_SHORT).show();}
         Port_Conf=preferencias.getString("port", "9000");
@@ -531,7 +531,6 @@ public class Activity_Configuracion extends AppCompatActivity {
         editor.commit();
 
     }
-
 
     public void DialogoCambiarTexto(final TextView tx)  {
         // con este tema personalizado evitamos los bordes por defecto

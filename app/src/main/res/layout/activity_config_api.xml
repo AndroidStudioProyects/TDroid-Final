@@ -50,11 +50,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
-                    android:ems="10"
-                    android:hint="4 digitos"
-                    android:inputType="numberPassword"
+                    android:enabled="false"
                     android:background="@drawable/fondo_3"
+                    android:ems="10"
+                    android:inputType="numberPassword"
                     android:maxLength="4"
+                    android:text="1234"
                     android:textAlignment="center" />
 
             </LinearLayout>
@@ -79,9 +80,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
-                    android:ems="10"
-                    android:hint="4 digitos"
                     android:background="@drawable/fondo_3"
+                    android:ems="10"
                     android:inputType="numberPassword"
                     android:maxLength="4"
                     android:textAlignment="center" />
@@ -108,10 +108,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
-                    android:ems="10"
-                    android:hint="4 digitos"
-                    android:inputType="numberPassword"
                     android:background="@drawable/fondo_3"
+                    android:ems="10"
+                    android:inputType="numberPassword"
                     android:maxLength="4"
                     android:textAlignment="center" />
 
@@ -165,12 +164,12 @@
                 android:id="@+id/edit_IP_Menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:background="@drawable/fondo_3"
                 android:ems="10"
                 android:enabled="false"
-                android:layout_margin="3dp"
                 android:inputType="textPersonName"
                 android:text="localhost"
-                android:background="@drawable/fondo_3"
                 android:textAlignment="center" />
 
         </LinearLayout>
@@ -209,7 +208,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
-            android:text="almacenar datos del servidor" />
+            android:text="Modificar Servidor y Contraseña Actual" />
 
     </LinearLayout>
 

@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -69,9 +68,7 @@ public class MainActivity extends AppCompatActivity {
         Levantar_XML();
         HabilitarSw(false);
         Acciones();
-        LevantarPreferencias();
-
-    }
+     }
 
     @Override
     protected void onStart() {
@@ -457,6 +454,8 @@ public class MainActivity extends AppCompatActivity {
         if(IP.toString().equals("localhost")){Toast.makeText(getApplicationContext(),"Falta configurar el Servidor",Toast.LENGTH_SHORT).show();}
         port=preferencias.getString("port", "9000");
         password=preferencias.getString("password", "1234");
+        if(password.toString().equals("1234")){Toast.makeText(getApplicationContext(),"La contraseña es por defecto",Toast.LENGTH_SHORT).show();}
+
 
         switch_1_pref = preferencias.getString("switch_1", "switch 1");
         switch_2_pref = preferencias.getString("switch_2", "switch 2");
