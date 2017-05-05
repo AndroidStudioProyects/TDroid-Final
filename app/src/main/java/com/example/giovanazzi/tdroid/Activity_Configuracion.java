@@ -395,7 +395,7 @@ public class Activity_Configuracion extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(String s) {
-
+            d("REcibe", "s: "+s);
             if((s == null) || (s.equals(""))){
 
                } else {

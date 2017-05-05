@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:padding="5dp"
         android:weightSum="1">
 
         <Button
@@ -16,6 +17,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/selector_1"
             android:layout_weight="0.5"
+            android:padding="5dp"
             android:text="Guardar" />
 
         <Button
@@ -23,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_1"
+            android:padding="5dp"
             android:layout_weight="0.5"
             android:text="Actualizar" />
 
@@ -35,21 +38,24 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="5dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/fondo_2"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="1"
 
-                    android:padding="2dp">
+                    android:orientation="horizontal"
+                    android:padding="2dp"
+
+                    android:weightSum="1">
 
                     <TextView
                         android:id="@+id/text_conf1"
@@ -65,13 +71,14 @@
                         android:id="@+id/edit_conf1"
                         android:layout_width="89dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/fondo_3"
+                        android:layout_weight="0.37"
+                        android:background="@drawable/selector_edittext"
                         android:ems="10"
                         android:gravity="end"
                         android:inputType="number"
                         android:maxLength="6"
-                        android:text="0"
-                        android:layout_weight="0.37" />
+
+                        android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf1"
@@ -84,8 +91,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1"
-                   android:padding="2dp">
+                    android:padding="2dp"
+                    android:weightSum="1">
 
                     <TextView
                         android:id="@+id/text_conf2"
@@ -101,8 +108,8 @@
                         android:layout_width="89dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.40"
+                        android:background="@drawable/selector_edittext"
                         android:ems="10"
-                        android:background="@drawable/fondo_3"
                         android:gravity="end"
                         android:inputType="number"
                         android:maxLength="6"
@@ -119,8 +126,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1"
-                    android:padding="2dp">
+                    android:padding="2dp"
+                    android:weightSum="1">
 
                     <TextView
                         android:id="@+id/text_conf3"
@@ -135,13 +142,13 @@
                         android:id="@+id/edit_conf3"
                         android:layout_width="89dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.42"
+                        android:background="@drawable/selector_edittext"
                         android:ems="10"
                         android:gravity="end"
                         android:inputType="number"
-                        android:background="@drawable/fondo_3"
                         android:maxLength="6"
-                        android:text="0"
-                        android:layout_weight="0.42" />
+                        android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf3"
@@ -154,8 +161,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1"
-                    android:padding="2dp">
+                    android:padding="2dp"
+                    android:weightSum="1">
 
                     <TextView
                         android:id="@+id/text_conf4"
@@ -170,13 +177,13 @@
                         android:id="@+id/edit_conf4"
                         android:layout_width="89dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/fondo_3"
+                        android:layout_weight="0.42"
+                        android:background="@drawable/selector_edittext"
                         android:ems="10"
                         android:gravity="end"
                         android:inputType="number"
                         android:maxLength="6"
-                        android:text="0"
-                        android:layout_weight="0.42" />
+                        android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf4"
@@ -189,8 +196,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1"
-                    android:padding="2dp">
+                    android:padding="2dp"
+                    android:weightSum="1">
 
                     <TextView
                         android:id="@+id/text_conf5"
@@ -205,13 +212,13 @@
                         android:id="@+id/edit_conf5"
                         android:layout_width="89dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.42"
+                        android:background="@drawable/selector_edittext"
                         android:ems="10"
                         android:gravity="end"
                         android:inputType="number"
-                        android:background="@drawable/fondo_3"
                         android:maxLength="6"
-                        android:text="0"
-                        android:layout_weight="0.42" />
+                        android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf5"
@@ -224,8 +231,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1"
-                    android:padding="2dp">
+                    android:padding="2dp"
+                    android:weightSum="1">
 
                     <TextView
                         android:id="@+id/text_conf6"
@@ -240,13 +247,13 @@
                         android:id="@+id/edit_conf6"
                         android:layout_width="89dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.48"
+                        android:background="@drawable/selector_edittext"
                         android:ems="10"
                         android:gravity="end"
                         android:inputType="number"
-                        android:background="@drawable/fondo_3"
                         android:maxLength="6"
-                        android:text="0"
-                        android:layout_weight="0.48" />
+                        android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf6"
@@ -259,8 +266,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1"
-                   android:padding="2dp">
+                    android:padding="2dp"
+                    android:weightSum="1">
 
                     <TextView
                         android:id="@+id/text_conf7"
@@ -275,13 +282,13 @@
                         android:id="@+id/edit_conf7"
                         android:layout_width="89dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.49"
+                        android:background="@drawable/selector_edittext"
                         android:ems="10"
                         android:gravity="end"
                         android:inputType="number"
-                        android:background="@drawable/fondo_3"
                         android:maxLength="6"
-                        android:text="0"
-                        android:layout_weight="0.49" />
+                        android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf7"
@@ -294,8 +301,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1"
-                    android:padding="2dp">
+                    android:padding="2dp"
+                    android:weightSum="1">
 
                     <TextView
                         android:id="@+id/text_conf8"
@@ -311,11 +318,11 @@
                         android:layout_width="89dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.53"
+                        android:background="@drawable/selector_edittext"
                         android:ems="10"
                         android:gravity="end"
                         android:inputType="number"
                         android:maxLength="6"
-                        android:background="@drawable/fondo_3"
                         android:text="0" />
 
                     <Spinner
@@ -329,8 +336,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
-                    android:weightSum="1"
-                   android:padding="2dp">
+                    android:padding="2dp"
+                    android:weightSum="1">
 
 
                     <TextView
@@ -346,13 +353,13 @@
                         android:id="@+id/edit_conf9"
                         android:layout_width="89dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.53"
+                        android:background="@drawable/selector_edittext"
                         android:ems="10"
                         android:gravity="end"
                         android:inputType="number"
                         android:maxLength="6"
-                        android:background="@drawable/fondo_3"
-                        android:text="0"
-                        android:layout_weight="0.53" />
+                        android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf9"
