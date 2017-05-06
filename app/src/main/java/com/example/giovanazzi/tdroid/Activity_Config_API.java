@@ -52,7 +52,7 @@ public class Activity_Config_API extends AppCompatActivity {
         LevantarXML();
         Botones();
         Dialogo();
-        d(TAG, "ON CREATE");
+        //   d(TAG, "ON CREATE");
 
     }
 
@@ -62,14 +62,14 @@ public class Activity_Config_API extends AppCompatActivity {
        LevantarPreferencias();
        edit_pass_nuevo.setText("");
        edit_repass_nuevo.setText("");
-        d(TAG, "ON START");
+        //     d(TAG, "ON START");
 
     }
 
     @Override
     protected void onStop(){
         super.onStop();
-        d(TAG, "ON STOP");
+        //     d(TAG, "ON STOP");
     }
 
     void LevantarXML(){
@@ -180,16 +180,16 @@ public class Activity_Config_API extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(String s) {
-            d(TAG, "DATO RECIBIDO: "+ s);
+            //     d(TAG, "DATO RECIBIDO: "+ s);
 
             if((s == null) || (s.equals(""))){
 
-                d(TAG, "DATO VACIO");
+                //       d(TAG, "DATO VACIO");
             } else{
                     String delimitadores = " ";
                     String[] dato = s.split(delimitadores);
                     int longitud = dato.length;
-                    d(TAG, "dato[0]: "+dato[0]+" dato[1]: "+dato[1]);
+                //        d(TAG, "dato[0]: "+dato[0]+" dato[1]: "+dato[1]);
 
                       if(dato[0].equals("111")){
 
@@ -198,9 +198,9 @@ public class Activity_Config_API extends AppCompatActivity {
                             password=pass_Nuevo;
                             edit_pass_actual.setText(password);
                             Toast.makeText(getApplicationContext(),"Password:'"+password+"' fue almacenado !!",Toast.LENGTH_SHORT).show();
-                            d(TAG, "Password almacenado");
-                            d(TAG, "pass_Nuevo: " +pass_Nuevo);
-                            d(TAG, "password: " +password);
+                            //         d(TAG, "Password almacenado");
+                            //         d(TAG, "pass_Nuevo: " +pass_Nuevo);
+                            //         d(TAG, "password: " +password);
                             AlmacenarPreferencias();
                         }
 
@@ -229,7 +229,7 @@ public class Activity_Config_API extends AppCompatActivity {
         IP=edit_IP_Menu.getText().toString();
         port=edit_Puerto_Menu.getText().toString();
         password=edit_pass_actual.getText().toString();
-        d(TAG, "password: "+password);
+        //    d(TAG, "password: "+password);
         SharedPreferences.Editor editor=preferencias.edit();
         editor.putString("IP", IP);
         editor.putString("port", port);
@@ -246,7 +246,7 @@ public class Activity_Config_API extends AppCompatActivity {
         client.execute(IP, port, "111"); // envia passactual y nuevo
         client = new ClientAsyncTask();
         client.execute(IP, port, password + " " + pass_Nuevo); // envia passactual y nuevo
-        d(TAG, "Envio: " + password+" "+pass_Nuevo);
+        //   d(TAG, "Envio: " + password+" "+pass_Nuevo);
         edit_pass_nuevo.setText("");
 
     }
@@ -278,7 +278,7 @@ public class Activity_Config_API extends AppCompatActivity {
 
             Intent Config = new Intent(getApplicationContext(),Activity_Config_API.class);
             startActivity(Config);
-            d(TAG, "Menu configuracion");
+            //    d(TAG, "Menu configuracion");
             return true;
         }
 

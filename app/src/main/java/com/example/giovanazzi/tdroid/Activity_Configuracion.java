@@ -74,7 +74,7 @@ public class Activity_Configuracion extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         LevantarPreferencias();
-        d(TAG,"password_Conf:"+password_Conf);
+        //   d(TAG,"password_Conf:"+password_Conf);
 
         Conf1=preferencias.getString("Conf1", "Bar");
         Conf2=preferencias.getString("Conf2", "Bar");
@@ -358,7 +358,7 @@ public class Activity_Configuracion extends AppCompatActivity {
             client.execute(IP_Conf, Port_Conf, "999");
             client = new ClientAsyncTask();
             client.execute(IP_Conf, Port_Conf, Conf1 + " " + Conf2 + " " + Conf3 + " " + Conf4 + " " + Conf5 + " " + Conf6 + " " + Conf7 + " " + Conf8 + " " + Conf9 + " "+ password_Conf);
-            d(TAG, "Configuracion Enviada: " + Conf1 + " " + Conf2 + " " + Conf3 + " " + Conf4 + " " + Conf5 + " " + Conf6 + " " + Conf7 + " " + Conf8 + " " + Conf9 +" "+ password_Conf);
+            //   d(TAG, "Configuracion Enviada: " + Conf1 + " " + Conf2 + " " + Conf3 + " " + Conf4 + " " + Conf5 + " " + Conf6 + " " + Conf7 + " " + Conf8 + " " + Conf9 +" "+ password_Conf);
         }
 
     }
@@ -500,7 +500,7 @@ public class Activity_Configuracion extends AppCompatActivity {
         if(IP_Conf.toString().equals("localhost")){Toast.makeText(getApplicationContext(),"Falta configurar el Servidor",Toast.LENGTH_SHORT).show();}
         Port_Conf=preferencias.getString("port", "9000");
         password_Conf=preferencias.getString("password", "1234");
-        d(TAG, "password_Conf:"+password_Conf);
+        //  d(TAG, "password_Conf:"+password_Conf);
 
         text_Conf1_pref=preferencias.getString("text_Conf_1", "Conf 1");
         text_Conf2_pref=preferencias.getString("text_Conf_2", "Conf 2");
@@ -678,7 +678,7 @@ public class Activity_Configuracion extends AppCompatActivity {
         }
         if (id == R.id.menu_compartir) {
 
-            d(TAG, "compartir configuracion");
+            //   d(TAG, "compartir configuracion");
 
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);

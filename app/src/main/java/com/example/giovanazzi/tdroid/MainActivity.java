@@ -240,11 +240,11 @@ public class MainActivity extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(String s) {
-            d(TAG, "DATO RECIBIDO: "+ s);
+          //  d(TAG, "DATO RECIBIDO: "+ s);
 
             if((s == null) || (s.equals(""))){
             //  Toast.makeText(getApplicationContext(),"Comando no recibido",Toast.LENGTH_SHORT).show();
-                d(TAG, "DATO VACIO");
+           //     d(TAG, "DATO VACIO");
 
             } else {
                 Toast toast=Toast.makeText(getApplicationContext(),"Actualizado",Toast.LENGTH_SHORT);
@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
                 String delimitadores = " ";
                 String[] dato = s.split(delimitadores);
                 int longitud = dato.length;
-                d(TAG, "Longitud: "+longitud);
+             //   d(TAG, "Longitud: "+longitud);
                 int posP1=-1,posP2=-1,posP3=-1,posT1=-1,posT2=-1,posT3=-1,posH1=-1,posH2=-1,posH3=-1,posK1=-1,posK2=-1,posK3=-1,posDI=-1,posDO=-1;
                 String P1="0",P2="0", P3="0", H1="0",H2="0",H3="0" ,T1="0", T2="0",T3="0", K1="0",K2="0",K3="0", DI="00000000000", DO="00000000";
                 String In1,In2, In3, In4,In5,In6 ,In7, In8;
@@ -274,24 +274,52 @@ public class MainActivity extends AppCompatActivity {
 
                         switch (dato[i]){
 
-                            case "P1": posP1=i;  Log.d(TAG,"P1: "+posP1);break;
-                            case "P2": posP2=i;  Log.d(TAG,"P2: "+posP2);break;
-                            case "P3": posP3=i;  Log.d(TAG,"P3: "+posP3);break;
+                            case "P1": posP1=i;
+                            //    Log.d(TAG,"P1: "+posP1);
+                                break;
+                            case "P2": posP2=i;
+                                //     Log.d(TAG,"P2: "+posP2);
+                                break;
+                            case "P3": posP3=i;
+                                //      Log.d(TAG,"P3: "+posP3);
+                                break;
 
-                            case "T1": posT1=i;  Log.d(TAG,"T1: "+posT1);break;
-                            case "T2": posT2=i;  Log.d(TAG,"T2: "+posT2);break;
-                            case "T3": posT3=i;  Log.d(TAG,"T3: "+posT3);break;
+                            case "T1": posT1=i;
+                                //    Log.d(TAG,"T1: "+posT1);
+                                break;
+                            case "T2": posT2=i;
+                                //    Log.d(TAG,"T2: "+posT2);
+                                break;
+                            case "T3": posT3=i;
+                                //     Log.d(TAG,"T3: "+posT3);
+                                break;
 
-                            case "H1": posH1=i; Log.d(TAG,"H1: "+posH1);break;
-                            case "H2": posH2=i; Log.d(TAG,"H2: "+posH2);break;
-                            case "H3": posH3=i; Log.d(TAG,"H3: "+posH3);break;
+                            case "H1": posH1=i;
+                                //    Log.d(TAG,"H1: "+posH1);
+                                break;
+                            case "H2": posH2=i;
+                                //     Log.d(TAG,"H2: "+posH2);
+                                break;
+                            case "H3": posH3=i;
+                                //    Log.d(TAG,"H3: "+posH3);
+                                break;
 
-                            case "K1": posK1=i; Log.d(TAG,"K1: "+posK1);break;
-                            case "K2": posK2=i; Log.d(TAG,"K2: "+posK2);break;
-                            case "K3": posK3=i; Log.d(TAG,"K3: "+posK3);break;
+                            case "K1": posK1=i;
+                                //    Log.d(TAG,"K1: "+posK1);
+                                break;
+                            case "K2": posK2=i;
+                                //    Log.d(TAG,"K2: "+posK2);
+                                break;
+                            case "K3": posK3=i;
+                                //    Log.d(TAG,"K3: "+posK3);
+                                break;
 
-                            case "DI": posDI=i; Log.d(TAG,"DI: "+posDI);break;
-                            case "DO": posDO=i; Log.d(TAG,"DO: "+posDO);break;
+                            case "DI": posDI=i;
+                                //    Log.d(TAG,"DI: "+posDI);
+                                break;
+                            case "DO": posDO=i;
+                                //    Log.d(TAG,"DO: "+posDO);
+                                break;
                             default:break;
                         }
               }
@@ -619,7 +647,7 @@ public class MainActivity extends AppCompatActivity {
 
             Intent Config = new Intent(getApplicationContext(),Activity_Config_API.class);
             startActivity(Config);
-            d(TAG, "Menu configuracion");
+            //   d(TAG, "Menu configuracion");
             return true;
         }
 
@@ -643,7 +671,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     sleep(4000);
-                    d(TAG, "hilo puto");
+                        //  d(TAG, "hilo puto");
                     client = new ClientAsyncTask();
                     client.execute(IP, port, "000");
 
