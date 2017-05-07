@@ -1,6 +1,7 @@
 package com.example.giovanazzi.tdroid;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,9 +10,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -43,6 +47,7 @@ public class Activity_Config_API extends AppCompatActivity {
     String IP,port,password,pass_Nuevo;
     CheckBox checkBox_ip_port;
     AlertDialog.Builder dialogo1;
+    Dialog customDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +57,7 @@ public class Activity_Config_API extends AppCompatActivity {
         LevantarXML();
         Botones();
         Dialogo();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         //   d(TAG, "ON CREATE");
 
     }
@@ -114,13 +120,13 @@ public class Activity_Config_API extends AppCompatActivity {
 
                     } else {
                         if (edit_pass_nuevo.getText().toString().matches(edit_repass_nuevo.getText().toString())) {
-                            CargarPassword();
-                            Toast.makeText(getApplicationContext(), "Solicitud enviada...", Toast.LENGTH_SHORT).show();
+                            DialogoPedirPassword();
                         } else {
                             Toast.makeText(getApplicationContext(), "No coinciden las contraseñas", Toast.LENGTH_SHORT).show();
+                            edit_pass_nuevo.setText("");
+                            edit_repass_nuevo.setText("");
                         }
-                        edit_pass_nuevo.setText("");
-                        edit_repass_nuevo.setText("");
+
 
                     }
 
@@ -198,9 +204,9 @@ public class Activity_Config_API extends AppCompatActivity {
                             password=pass_Nuevo;
                             edit_pass_actual.setText(password);
                             Toast.makeText(getApplicationContext(),"Password:'"+password+"' fue almacenado !!",Toast.LENGTH_SHORT).show();
-                            //         d(TAG, "Password almacenado");
-                            //         d(TAG, "pass_Nuevo: " +pass_Nuevo);
-                            //         d(TAG, "password: " +password);
+                              //       d(TAG, "Password almacenado");
+                               //      d(TAG, "pass_Nuevo: " +pass_Nuevo);
+                               //      d(TAG, "password: " +password);
                             AlmacenarPreferencias();
                         }
 
@@ -246,9 +252,47 @@ public class Activity_Config_API extends AppCompatActivity {
         client.execute(IP, port, "111"); // envia passactual y nuevo
         client = new ClientAsyncTask();
         client.execute(IP, port, password + " " + pass_Nuevo); // envia passactual y nuevo
-        //   d(TAG, "Envio: " + password+" "+pass_Nuevo);
+         //  d(TAG, "Envio: " + password+" "+pass_Nuevo);
         edit_pass_nuevo.setText("");
+        edit_repass_nuevo.setText("");
 
+    }
+
+    public void DialogoPedirPassword()  {
+        // con este tema personalizado evitamos los bordes por defecto
+        customDialog = new Dialog(this,R.style.Theme_AppCompat_Dialog);
+        //deshabilitamos el título por defecto
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //obligamos al usuario a pulsar los botones para cerrarlo
+        customDialog.setCancelable(false);
+        //establecemos el contenido de nuestro dialog
+        customDialog.setContentView(R.layout.activity_password);
+        final EditText editPass=(EditText)customDialog.findViewById(R.id.EditText_Pwd);
+        Button botonAcep=(Button) customDialog.findViewById(R.id.btn_acep_pwd);
+        Button botonCancel=(Button) customDialog.findViewById(R.id.btn_can_pwd);
+        botonAcep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+                if(editPass.getText().toString().equals(password)){
+                    CargarPassword();
+                    Toast.makeText(getApplicationContext(), "Solicitud enviada...", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getApplicationContext(), "Error de contraseña Local", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+        botonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+
+            }
+        });
+
+        customDialog.show();
     }
 
     private void Dialogo(){
@@ -289,7 +333,13 @@ public class Activity_Config_API extends AppCompatActivity {
             client.execute(IP,port,"777");
             return true;
         }
-
+        if (id == R.id.menu_about){
+            Toast hola =Toast.makeText(getApplicationContext(),"Desarrolladores:\n" +
+                    "Android: diegogiovanazzi@gmail.com\n" +
+                    "Equipo TRACK: gmisino@gmail.com",Toast.LENGTH_LONG);
+            hola.setGravity(Gravity.CENTER,0,0);
+            hola.show();
+        }
         return super.onOptionsItemSelected(item);
     }
 

@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="5dp"
-        android:weightSum="1">
+        android:padding="3dp">
 
         <Button
             android:id="@+id/btn_guardar"
@@ -35,12 +34,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:background="@drawable/fondo_4"
+            android:layout_margin="5dp"
             android:padding="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/fondo_2"
+
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -56,15 +57,18 @@
                     <TextView
                         android:id="@+id/text_conf1"
                         style="@style/StyleTextView"
+                        android:layout_weight="0.33"
                         android:text="Conf 1:" />
 
                     <EditText
                         android:id="@+id/edit_conf1"
                         style="@style/StyleEditText"
+                        android:layout_weight="0.33"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf1"
+                        android:layout_weight="0.33"
                         style="@style/StyleSpinner"/>
                 </LinearLayout>
 
@@ -79,15 +83,18 @@
                     <TextView
                         android:id="@+id/text_conf2"
                         style="@style/StyleTextView"
+                        android:layout_weight="0.33"
                         android:text="Conf 2:" />
 
                     <EditText
                         android:id="@+id/edit_conf2"
                         style="@style/StyleEditText"
+                        android:layout_weight="0.33"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf2"
+                        android:layout_weight="0.33"
                         style="@style/StyleSpinner"/>
                 </LinearLayout>
 
@@ -102,15 +109,18 @@
                     <TextView
                         android:id="@+id/text_conf3"
                         style="@style/StyleTextView"
+                        android:layout_weight="0.33"
                         android:text="Conf 3:" />
 
                     <EditText
                         android:id="@+id/edit_conf3"
                         style="@style/StyleEditText"
+                        android:layout_weight="0.33"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf3"
+                        android:layout_weight="0.33"
                         style="@style/StyleSpinner"/>
                 </LinearLayout>
 
@@ -125,15 +135,18 @@
                     <TextView
                         android:id="@+id/text_conf4"
                         style="@style/StyleTextView"
+                        android:layout_weight="0.33"
                         android:text="Conf 4:" />
 
                     <EditText
                         android:id="@+id/edit_conf4"
+                        android:layout_weight="0.33"
                         style="@style/StyleEditText"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf4"
+                        android:layout_weight="0.33"
                         style="@style/StyleSpinner"/>
                 </LinearLayout>
 
@@ -148,15 +161,18 @@
                     <TextView
                         android:id="@+id/text_conf5"
                         style="@style/StyleTextView"
+                        android:layout_weight="0.33"
                         android:text="Conf 5:" />
 
                     <EditText
                         android:id="@+id/edit_conf5"
                         style="@style/StyleEditText"
+                        android:layout_weight="0.33"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf5"
+                        android:layout_weight="0.33"
                         style="@style/StyleSpinner"/>
                 </LinearLayout>
 
@@ -171,15 +187,18 @@
                     <TextView
                         android:id="@+id/text_conf6"
                         style="@style/StyleTextView"
+                        android:layout_weight="0.33"
                         android:text="Conf 6:" />
 
                     <EditText
                         android:id="@+id/edit_conf6"
                         style="@style/StyleEditText"
+                        android:layout_weight="0.33"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf6"
+                        android:layout_weight="0.33"
                         style="@style/StyleSpinner"/>
                 </LinearLayout>
 
@@ -194,15 +213,18 @@
                     <TextView
                         android:id="@+id/text_conf7"
                         style="@style/StyleTextView"
+                        android:layout_weight="0.33"
                         android:text="Conf 7:" />
 
                     <EditText
                         android:id="@+id/edit_conf7"
                         style="@style/StyleEditText"
+                        android:layout_weight="0.33"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf7"
+                        android:layout_weight="0.33"
                         style="@style/StyleSpinner"/>
                 </LinearLayout>
 
@@ -217,15 +239,18 @@
                     <TextView
                         android:id="@+id/text_conf8"
                         style="@style/StyleTextView"
+                        android:layout_weight="0.33"
                         android:text="Conf 8:" />
 
                     <EditText
                         android:id="@+id/edit_conf8"
+                        android:layout_weight="0.33"
                         style="@style/StyleEditText"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf8"
+                        android:layout_weight="0.33"
                         style="@style/StyleSpinner"/>
                 </LinearLayout>
 
@@ -241,20 +266,27 @@
                     <TextView
                         android:id="@+id/text_conf9"
                         style="@style/StyleTextView"
+                        android:layout_weight="0.33"
                         android:text="Conf 9:" />
 
                     <EditText
                         android:id="@+id/edit_conf9"
                         style="@style/StyleEditText"
+                        android:layout_weight="0.33"
                         android:text="0" />
 
                     <Spinner
                         android:id="@+id/spin_Conf9"
+                        android:layout_weight="0.33"
                         style="@style/StyleSpinner"/>
                 </LinearLayout>
 
             </LinearLayout>
-
+            <Button
+                android:id="@+id/btn_CompartirConf"
+                style="@style/EstiloBoton"
+                android:text="Compartir Configuracion"
+                android:layout_width="match_parent" />
         </LinearLayout>
     </ScrollView>
 

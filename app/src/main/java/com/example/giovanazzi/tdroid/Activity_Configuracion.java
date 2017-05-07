@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,7 +41,7 @@ public class Activity_Configuracion extends AppCompatActivity {
     String TAG="TrackDroid";
 
     ClientAsyncTask client;
-    Button btn_Guardar,btn_Actualizar;
+    Button btn_Guardar,btn_Actualizar,btn_CompartirConf;
     //EditText editText_IP,editText_port;
     TextView text_Conf1,text_Conf2,text_Conf3,text_Conf4,
             text_Conf5,text_Conf6,text_Conf7,text_Conf8,text_Conf9;
@@ -157,6 +158,7 @@ public class Activity_Configuracion extends AppCompatActivity {
 
         btn_Guardar=(Button)findViewById(R.id.btn_guardar);
         btn_Actualizar=(Button)findViewById(R.id.btn_Actualizar);
+        btn_CompartirConf=(Button)findViewById(R.id.btn_CompartirConf);
 
     }
 
@@ -179,20 +181,34 @@ public class Activity_Configuracion extends AppCompatActivity {
         btn_Actualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
              client=new ClientAsyncTask();
-             client.execute(IP_Conf,Port_Conf,"888");
-            }
-        });
+             client.execute(IP_Conf,Port_Conf,"888");}});
 
         btn_Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogoPedirPassword();
+                DialogoPedirPassword();}});
 
-     }
+        btn_CompartirConf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT,
+                                "Configuracion TRACK-AUTOMATISMO:\n"+
+                                "Conf1: " + edit_Conf1.getText().toString()+" "+Posicion(spinpos1)+"\n"+
+                                "Conf2: " + edit_Conf2.getText().toString()+" "+Posicion(spinpos2)+"\n"+
+                                "Conf3: " + edit_Conf3.getText().toString()+" "+Posicion(spinpos3)+"\n"+
+                                "Conf4: " + edit_Conf4.getText().toString()+" "+Posicion(spinpos4)+"\n"+
+                                "Conf5: " + edit_Conf5.getText().toString()+" "+Posicion(spinpos5)+"\n"+
+                                "Conf6: " + edit_Conf6.getText().toString()+" "+Posicion(spinpos6)+"\n"+
+                                "Conf7: " + edit_Conf7.getText().toString()+" "+Posicion(spinpos7)+"\n"+
+                                "Conf8: " + edit_Conf8.getText().toString()+" "+Posicion(spinpos8)+"\n"+
+                                "Conf9: " + edit_Conf9.getText().toString()+" "+Posicion(spinpos9)+"\n");
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+            }
         });
-
     }
 
     void Spiners(){
@@ -676,32 +692,19 @@ public class Activity_Configuracion extends AppCompatActivity {
             startActivity(Config);
             return true;
         }
-        if (id == R.id.menu_compartir) {
 
-            //   d(TAG, "compartir configuracion");
-
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT,
-                        "Conf1: " + edit_Conf1.getText().toString()+" "+Posicion(spinpos1)+"\n"+
-                        "Conf2: " + edit_Conf2.getText().toString()+" "+Posicion(spinpos2)+"\n"+
-                        "Conf3: " + edit_Conf3.getText().toString()+" "+Posicion(spinpos3)+"\n"+
-                        "Conf4: " + edit_Conf4.getText().toString()+" "+Posicion(spinpos4)+"\n"+
-                        "Conf5: " + edit_Conf5.getText().toString()+" "+Posicion(spinpos5)+"\n"+
-                        "Conf6: " + edit_Conf6.getText().toString()+" "+Posicion(spinpos6)+"\n"+
-                        "Conf7: " + edit_Conf7.getText().toString()+" "+Posicion(spinpos7)+"\n"+
-                        "Conf8: " + edit_Conf8.getText().toString()+" "+Posicion(spinpos8)+"\n"+
-                        "Conf9: " + edit_Conf9.getText().toString()+" "+Posicion(spinpos9)+"\n");
-                sendIntent.setType("text/plain");
-                startActivity(sendIntent);
-
-            return true;
-        }
         if (id == R.id.menu_solicitar_pass) {
             Toast.makeText(getApplicationContext(),"El equipo remoto mostrara la contraseña",Toast.LENGTH_LONG).show();
             client=new ClientAsyncTask();
             client.execute(IP_Conf,Port_Conf,"777");
             return true;
+        }
+        if (id == R.id.menu_about){
+            Toast hola =Toast.makeText(getApplicationContext(),"Desarrolladores:\n" +
+                    "Android: diegogiovanazzi@gmail.com\n" +
+                    "Equipo TRACK: gmisino@gmail.com",Toast.LENGTH_LONG);
+            hola.setGravity(Gravity.CENTER,0,0);
+            hola.show();
         }
 
         return super.onOptionsItemSelected(item);

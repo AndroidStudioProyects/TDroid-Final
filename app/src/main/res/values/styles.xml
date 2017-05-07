@@ -24,7 +24,7 @@
 
     <style name="EstiloBoton">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">33dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:background">@drawable/selector_1</item>
         <item name="android:layout_margin">3dp</item>

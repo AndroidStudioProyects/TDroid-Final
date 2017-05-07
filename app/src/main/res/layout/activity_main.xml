@@ -32,11 +32,10 @@
 
         <CheckBox
             android:id="@+id/checkBox_Auto"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:layout_width="wrap_content"
             android:background="@drawable/selector_edittext"
-            android:text="Auto"
-             />
+            android:text="Auto"/>
 
     </LinearLayout>
 
@@ -637,6 +636,7 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:text="P1 : - Bar"
+                        android:background="@drawable/selector_textview"
                         android:textAlignment="viewStart"
                         android:visibility="visible" />
 
@@ -648,6 +648,7 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:text="P2 : - Bar"
+                        android:background="@drawable/selector_textview"
                         android:textAlignment="textStart"
                         android:visibility="visible" />
 
@@ -659,6 +660,7 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:text="P3 : - Bar"
+                        android:background="@drawable/selector_textview"
                         android:textAlignment="textStart"
                         android:visibility="visible" />
 
@@ -677,6 +679,7 @@
                         android:layout_gravity="start"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
+                        android:background="@drawable/selector_textview"
                         android:text="T1 : - ºC"
                         android:textAlignment="textStart" />
 
@@ -687,6 +690,7 @@
                         android:layout_gravity="start"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
+                        android:background="@drawable/selector_textview"
                         android:text="T2 : - ºC"
                         android:textAlignment="textStart" />
 
@@ -697,6 +701,7 @@
                         android:layout_gravity="start"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
+                        android:background="@drawable/selector_textview"
                         android:text="T3 : - ºC"
                         android:textAlignment="textStart" />
 
@@ -716,6 +721,7 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:text="H1 : - %"
+                        android:background="@drawable/selector_textview"
                         android:textAlignment="textStart" />
 
                     <TextView
@@ -724,6 +730,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:layout_margin="5dp"
+                        android:background="@drawable/selector_textview"
                         android:layout_weight="1"
                         android:text="H2 : - %"
                         android:textAlignment="textStart" />
@@ -735,6 +742,7 @@
                         android:layout_gravity="start"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
+                        android:background="@drawable/selector_textview"
                         android:text="H3 : - %"
                         android:textAlignment="textStart" />
 
@@ -755,6 +763,7 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:text="K1 : - kg"
+                        android:background="@drawable/selector_textview"
                         android:textAlignment="textStart" />
 
                     <TextView
@@ -764,6 +773,7 @@
                         android:layout_gravity="start"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
+                        android:background="@drawable/selector_textview"
                         android:text="K2: - kg"
                         android:textAlignment="textStart" />
 
@@ -774,6 +784,7 @@
                         android:layout_gravity="start"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
+                        android:background="@drawable/selector_textview"
                         android:text="K3: - kg"
                         android:textAlignment="textStart" />
 

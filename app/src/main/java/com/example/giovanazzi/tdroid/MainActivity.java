@@ -247,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
            //     d(TAG, "DATO VACIO");
 
             } else {
-                Toast toast=Toast.makeText(getApplicationContext(),"Actualizado",Toast.LENGTH_SHORT);
+                Toast toast=Toast.makeText(getApplicationContext(),"Actualizando...",Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
 
@@ -257,10 +257,7 @@ public class MainActivity extends AppCompatActivity {
              //   d(TAG, "Longitud: "+longitud);
                 int posP1=-1,posP2=-1,posP3=-1,posT1=-1,posT2=-1,posT3=-1,posH1=-1,posH2=-1,posH3=-1,posK1=-1,posK2=-1,posK3=-1,posDI=-1,posDO=-1;
                 String P1="0",P2="0", P3="0", H1="0",H2="0",H3="0" ,T1="0", T2="0",T3="0", K1="0",K2="0",K3="0", DI="00000000000", DO="00000000";
-                String In1,In2, In3, In4,In5,In6 ,In7, In8;
-                String unit;
-                String scale;
-                int cantidad;
+
               if(longitud==1){
                   // Toast.makeText(getApplicationContext(),dato[0],Toast.LENGTH_SHORT).show();
                }
@@ -643,14 +640,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id=item.getItemId();
-        if (id == R.id.menu_conf) {
 
+        if (id == R.id.menu_conf) {
             Intent Config = new Intent(getApplicationContext(),Activity_Config_API.class);
             startActivity(Config);
             //   d(TAG, "Menu configuracion");
             return true;
         }
-
 
         if (id == R.id.menu_solicitar_pass) {
             Toast.makeText(getApplicationContext(),"El equipo remoto mostrara la contraseña",Toast.LENGTH_LONG).show();
@@ -659,6 +655,13 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.menu_about){
+            Toast hola =Toast.makeText(getApplicationContext(),"Desarrolladores:\n" +
+                    "Android: diegogiovanazzi@gmail.com\n" +
+                    "Equipo TRACK: gmisino@gmail.com",Toast.LENGTH_LONG);
+           hola.setGravity(Gravity.CENTER,0,0);
+            hola.show();
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -668,8 +671,6 @@ public class MainActivity extends AppCompatActivity {
 
                 while (Auto) {
                     try {
-
-
                     sleep(4000);
                         //  d(TAG, "hilo puto");
                     client = new ClientAsyncTask();
